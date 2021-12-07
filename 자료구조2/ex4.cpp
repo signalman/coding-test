@@ -9,22 +9,22 @@ int main(){
   int N;
   cin>>N;
   stack<int> s,d;
-  vector<int> A(N), NGF(N), B(1000005);
+  vector<int> input(N), NGF(N), F(1000005);
   for(int i=0; i<N; i++){
-    cin>>A[i];
-    B[A[i]]++;
+    cin>>input[i];
+    F[input[i]]++;
   }
   for(int i=N-1; i>=0; i--){
     int cnt=1;
-    while(!s.empty()&&s.top()<=B[A[i]]){
+    while(!s.empty()&&s.top()<=F[input[i]]){
       d.push(s.top());
       s.pop();
       cnt++;
     }
     if(s.empty()){NGF[i]=-1;}
-    else{NGF[i]=A[i+cnt];}
+    else{NGF[i]=input[i+cnt];}
     while(!d.empty()){s.push(d.top());d.pop();}
-    s.push(B[A[i]]);
+    s.push(F[input[i]]);
   }
   for(auto i=0; i<N; i++){
     cout<<NGF[i]<<" ";

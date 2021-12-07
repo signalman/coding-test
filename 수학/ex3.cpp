@@ -1,25 +1,24 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
+int gcd(int x, int y){
+  if(x%y==0){  return y;  }
+  return gcd(y,x%y);
+}
 int main(){
+  ios_base::sync_with_stdio(false);
+  cout.tie(nullptr);
+  cin.tie(nullptr);
+
   int t;
+  int GCD;
   cin>>t;
-
-  int a,b;
   for(int i=0; i<t; i++){
-    int gcd;
+    int a,b;
     cin>>a>>b;
-    if(a>=b){
-      for(int j=1; j<=b; j++){
-        if(b%j==0&&a%j==0){gcd=j;}
-      }
-    }
-    else{
-      for(int j=1; j<=b; j++){
-        if(b%j==0&&a%j==0){gcd=j;}
-      }
-    }
-    cout<<gcd*(a/gcd)*(b/gcd)<<'\n';
+    if(a>=b){GCD=gcd(a,b);}
+    else{GCD=gcd(b,a);}
+    cout<<GCD*(a/GCD)*(b/GCD)<<'\n';
   }
-
 }
