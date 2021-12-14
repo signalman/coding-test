@@ -25,10 +25,6 @@ int main(){
       }
     }
     cout<<'\n';
-    
-    
-
-  
   }
   return 0;
 }

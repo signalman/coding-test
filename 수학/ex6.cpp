@@ -30,11 +30,4 @@ int main(){
     }
   }
 
-  // for(int i=1; i<200; i++){
-  //   if(primeNum(i)){cout<<i<<": prime"<<'\n';}
-  //   else cout<<i<<": no!"<<'\n';
-  // }
-
-
-
 }

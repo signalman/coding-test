@@ -20,7 +20,6 @@ int main(){
       dp[i]=min(dp[i],dp[i-j]+p[j]);
     }
   }
-
   cout<<dp[n]<<'\n';
 
   return 0;

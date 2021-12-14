@@ -10,10 +10,6 @@ int main (){
   for(int i=1; i<=n; i++){
     dp[i]=100000;
   }
-  // for(int i=1; i<=sqrt(n); i++){
-  //   int a= pow(i,2);
-  //   dp[a]=1;
-  // }
   dp[0]=0;
   for(int i=1; i<=n; i++){
     for(int j=1; j<=sqrt(i); j++){
