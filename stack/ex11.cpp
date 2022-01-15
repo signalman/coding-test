@@ -1,26 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 #define X first
 #define Y second
-stack<pair<int, int>> st;
-int arr[500001];
-int cnt;
-int main(){
+
+int main(void) {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
   int n;
-  cin>>n;
-  for(int i=0; i<n; i++){
-    cin>>arr[i];
-  }
-  cnt = n-1;
-  st.push({arr[0], 0});
-  for(int i=1; i<n; i++){
-    while(!st.empty()&&st.top().X<=arr[i]){
-      if(i-st.top().Y>1)cnt++;
-      st.pop();
+  cin >> n;
+  stack<pair<int, int>> S;
+  long long ans = 0;
+  while (n--) {
+    int h;
+    cin >> h;
+    int cnt = 1; //키가 h인 사람의 수
+    while (!S.empty() && S.top().X <= h) {
+      ans += S.top().Y;
+      if (S.top().X == h) cnt += S.top().Y;
+      S.pop();
     }
-    if(!st.empty()&&i-st.top().Y>1)cnt++;
-    st.push({arr[i], i});
+    if (!S.empty()) ans++;
+    S.push({h, cnt});
   }
-  cout<<cnt;
+  cout << ans;
 }
