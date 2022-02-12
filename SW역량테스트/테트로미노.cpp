@@ -2,73 +2,162 @@
 using namespace std;
 
 int n, m;
-int board[501][501];
-int mask1[3][2];
-int mask2[2][3];
-int mx;
+int board[510][510];
 
-int mx_cal1(int sum){
-  int a = sum - mask1[0][1]- mask1[2][1];
-  a= max(a, sum-mask1[0][0]-mask1[2][0]);
-  a= max(a, sum-mask1[1][1]-mask1[1][2]);
-  a= max(a, sum-mask1[0][1]-mask1[1][1]);
-  a= max(a, sum-mask1[1][0]-mask1[2][0]);
-  a= max(a, sum-mask1[0][0]-mask1[1][0]);
-  a= max(a, sum-mask1[0][0]-mask1[0][1]);
-  a= max(a, sum-mask1[2][0]-mask1[2][1]);
-  a= max(a, sum-mask1[0][1]-mask1[2][0]);
-  a= max(a, sum-mask1[0][0]-mask1[2][1]);
-  return a;
-}
-int mx_cal2(int sum){
-  int a = sum - mask2[0][1]- mask2[0][2];
-  a= max(a, sum-mask2[0][0]-mask2[0][2]);
-  a= max(a, sum-mask2[0][0]-mask2[0][1]);
-  a= max(a, sum-mask2[0][2]-mask2[1][2]);
-  a= max(a, sum-mask2[0][0]-mask2[1][0]);
-  a= max(a, sum-mask2[1][0]-mask2[1][2]);
-  a= max(a, sum-mask2[1][0]-mask2[1][1]);
-  a= max(a, sum-mask2[1][1]-mask2[1][2]);
-  a= max(a, sum-mask2[0][2]-mask2[1][0]);
-  a= max(a, sum-mask2[0][0]-mask2[1][2]);
-  return a;
+const char block[19][4][5] = {
+  {
+    {"1111"},
+    {"0000"},
+    {"0000"},
+    {"0000"}
+  },
+  {
+    {"1000"},
+    {"1000"},
+    {"1000"},
+    {"1000"}
+  },
+  {
+    {"1000"},
+    {"1000"},
+    {"1100"},
+    {"0000"}
+  },
+  {
+    {"1110"},
+    {"1000"},
+    {"0000"},
+    {"0000"}
+  },
+{
+    {"1100"},
+    {"0100"},
+    {"0100"},
+    {"0000"}
+  },
+  {
+    {"0010"},
+    {"1110"},
+    {"0000"},
+    {"0000"}
+  },
+  {
+    {"0100"},
+    {"0100"},
+    {"1100"},
+    {"0000"}
+  },
+  {
+    {"1110"},
+    {"0010"},
+    {"0000"},
+    {"0000"}
+  },
+  {
+    {"1100"},
+    {"1000"},
+    {"1000"},
+    {"0000"}
+  },
+  {
+    {"1000"},
+    {"1110"},
+    {"0000"},
+    {"0000"}
+  },
+  {
+    {"1000"},
+    {"1100"},
+    {"0100"},
+    {"0000"}
+  },
+  {
+    {"0110"},
+    {"1100"},
+    {"0000"},
+    {"0000"}
+  },
+  {
+    {"0100"},
+    {"1100"},
+    {"1000"},
+    {"0000"}
+  },
+  {
+    {"1100"},
+    {"0110"},
+    {"0000"},
+    {"0000"}
+  },
+  {
+    {"1110"},
+    {"0100"},
+    {"0000"},
+    {"0000"}
+  },
+  {
+    {"1000"},
+    {"1100"},
+    {"1000"},
+    {"0000"}
+  },
+  {
+    {"0100"},
+    {"1110"},
+    {"0000"},
+    {"0000"}
+  },
+  {
+    {"0100"},
+    {"1100"},
+    {"0100"},
+    {"0000"}
+  },
+  {
+    {"1100"},
+    {"1100"},
+    {"0000"},
+    {"0000"}
+  }
+};
+
+int calc(int a, int b, int k){
+  int ret = 0;
+  for(int i=0; i<4; i++){
+    for(int j=0; j<4; j++){
+      ret += (block[k][i][j] - '0') * board[i+a][j+b];
+    }
+  }
+  return ret;
 }
 
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
-  int mx1, mx2;
-  int mx3, mx4;
   cin>>n>>m;
   for(int i=0; i<n; i++){
     for(int j=0; j<m; j++){
       cin>>board[i][j];
     }
   }
-  for(int i=0; i<n-2; i++){
-    for(int j=0; j<m-1; j++){
-      int sum = 0;
-      for(int k=0; k<3; k++){
-        for(int l=0; l<2; l++){
-          mask1[k][l] = board[i+k][j+l];
-          sum += mask1[k][l];
-        }
-      }
-      mx1 = mx_cal1(sum);
+  for(int i=0; i<n+3; i++){
+    for(int j=m; j<m+3; j++){
+      board[i][j] = -100000;
     }
   }
-  for(int i=0; i<n-1; i++){
-    for(int j=0; j<m-2; j++){
-      int sum = 0;
-      for(int k=0; k<2; k++){
-        for(int l=0; l<3; l++){
-          mask2[k][l] = board[i+k][j+l];
-          sum += mask2[k][l];
-        }
-      }
-      mx2 = mx_cal2(sum);
+  for(int i=n; i<n+3; i++){
+    for(int j=0; j<m+3; j++){
+      board[i][j] = -100000;
     }
   }
-  mx = max(mx1, mx2);
-  cout<<mx;
+  int mx = 0;
+  for(int i=0; i<n; i++){
+    for(int j=0; j<m; j++){
+      for(int k=0; k<19; k++){
+        mx = max(mx, calc(i, j, k));
+      }
+    }
+  }
+  cout<<mx<<'\n';
+  
 }
