@@ -45,7 +45,7 @@ int main(){
       int ny = cur.Y +dy[i];
       if(nx>=r||ny>=c||nx<0||ny<0) {cout<<jdist[cur.X][cur.Y]+1; return 0;}
       if(board[nx][ny]=='#'||jdist[nx][ny]!=-1)continue;
-      if(fdist[nx][ny] != -1 && jdist[cur.X][cur.Y]+1 >= fdist[nx][ny])continue;
+      if(fdist[nx][ny] != -1 && jdist[cur.X][cur.Y]+1 >= fdist[nx][ny])continue;//
       jdist[nx][ny] = jdist[cur.X][cur.Y] + 1;
       jQ.push({nx, ny});
     }

@@ -17,6 +17,7 @@ int main(){
   cin.tie(0);
   int k;
   cin>>k;
-  cout<< (1<<k)-1 << '\n';
+  int c = pow(2,k);
+  cout<< c-1 << '\n';
   func(1, 3, k);
 }

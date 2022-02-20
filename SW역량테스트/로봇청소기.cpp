@@ -20,7 +20,6 @@ void robot(int x, int y, int d){
     int nd = (d-i+3)%4;
     int nx= x + dx[nd];
     int ny= y + dy[nd];
-    if(nx<0||ny<0||nx>=n||ny>=m) continue;
     if(board2[nx][ny]!=0 || vis[nx][ny]) continue;
     robot(nx, ny, nd);
   }

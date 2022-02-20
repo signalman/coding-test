@@ -20,4 +20,5 @@ int main(){
   for(int i=0; i<n; i++){
     cout<< lower_bound(uni.begin(), uni.end(), x[i]) - uni.begin() <<' ';
   }
+  tmp.erase(unique(tmp.begin(), tmp.end()), tmp.end()); 
 }

@@ -47,9 +47,6 @@ for (int i = 0; i < h; i++) {
       cout<<'\n';
     }
   }
-
-
-
   int ans = 0;
   for (int i = 0; i < h; i++) {
     for (int j = 0; j < n; j++) {

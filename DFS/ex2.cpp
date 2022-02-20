@@ -2,7 +2,7 @@
 #include <queue>
 using namespace std;
 #define MAX 1001
- 
+   
 int N, M, V; //정점개수, 간선개수, 시작정점
 int map[MAX][MAX]; //인접 행렬 그래프
 bool visited[MAX]; //정점 방문 여부

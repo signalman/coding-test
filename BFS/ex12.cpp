@@ -20,7 +20,7 @@ int main(){
   Q.push({0, 0});
   dist[0][0] = 1;
   while(!Q.empty()){
-    pair<int, int> cur = Q.front();
+    pair<int, int> cur = Q.front(); 
     Q.pop();
     for(int i=0; i<4; i++){
       int nx = cur.X + dx[i];

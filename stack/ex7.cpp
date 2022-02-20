@@ -9,11 +9,9 @@ int main(){
   stack<int> st;
   string s;
   int cur = 1;
-  int err;
   for(int i=0; i<n; i++){
     int a;
     cin>>a;
-    if(err==1)continue;
     if(st.empty()||st.top()<=a){
       while(cur<=a){
         st.push(cur);

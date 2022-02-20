@@ -49,7 +49,6 @@ int main(){
       }
       if(adj>=7&&dasom>=4){ans++; break;}
     }
-
   }
   while(next_permutation(mask, mask+25));
   cout<<ans;

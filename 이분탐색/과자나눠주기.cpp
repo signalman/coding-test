@@ -1,21 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int m, n;
-vector<int> a(1000001);
+using ll = long long;
 
-int main(){
-  ios_base::sync_with_stdio(0);
-  cin.tie(0);
-  cin>>m>>n;
-  for(int i=0; i<n; i++){
-    cin>>a[i];
+int m, n;
+int l[1000002];
+
+// 막대 과자의 길이가 x일 경우 m조각 이상이 나오는가?
+bool solve(int x) {
+  if (x == 0) return true;
+  ll cnt = 0;
+  for (int i = 0; i < n; ++i) {
+    cnt += l[i] / x;
   }
-  sort(a.begin(), a.end(), greater<>());
-  do{
-    int first = a[0];
-    a.push_back(first/2);
-    sort(a.begin(), a.end(), greater<>());
-  }while(m > n || a[0]/2 > a[m-1]);
-  cout<<a[m-1];
+  return cnt >= m;
+}
+
+int main() {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+
+  cin >> m >> n;
+  for (int i = 0; i < n; ++i)
+    cin >> l[i];
+
+  int st = 0;
+  int en = *max_element(l, l+n);
+
+  while (st < en) {
+    int mid = (st + en + 1) / 2;
+    if (solve(mid))
+      st = mid;
+    else
+      en = mid - 1;
+  }
+  cout << st << "\n";
 }

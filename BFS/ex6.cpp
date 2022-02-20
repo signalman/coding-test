@@ -13,8 +13,6 @@ void bfs(int n){
   for(int i=1; i<102; i++){   
     if(board[cur][i]==1&&vis[i]==0){Q.push(i); vis[i]=1; ans++;}
   }
-  
-  
   }
 }
 int main(){

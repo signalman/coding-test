@@ -6,7 +6,7 @@ int a[100005];
 int mn = 0x7fffffff;
 
 int main(){
-  ios_base::sync_with_stdio(0);
+  ios_base::sync_with_stdio(0); 
   cin.tie(0);
   cin>>n>>s;
   for(int i=0; i<n; i++){
@@ -21,7 +21,7 @@ int main(){
     sum -= a[st];
   }
   if(mn == 0x7fffffff){
-    mn=0;
+    mn=0;  
   }
   cout<< mn;
 }

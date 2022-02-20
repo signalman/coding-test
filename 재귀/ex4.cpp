@@ -2,7 +2,6 @@
 using namespace std;
 
 int m;
-int ans;
 
 int fi(int n){
   if(n==0){return 0;}

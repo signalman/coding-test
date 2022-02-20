@@ -17,7 +17,7 @@ void erase(int idx, int arr[], int& len){
 void printArr(int arr[], int& len){
   for(int i=0; i<len; i++){
     cout<<arr[i]<< ' ';
-  }
+  } 
   cout<<"\n\n";
 }
 int main(){

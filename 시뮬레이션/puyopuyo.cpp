@@ -11,7 +11,7 @@ char board[15][15];
 // 3. 연쇄된 뿌요를 .으로 변경
 queue<pair<int, int>> Q;
 int ans = 0;
-bool b;
+bool b;  
 void bfs(){
   bool vis[15][15]={0,};
   bool flag = false;
@@ -74,14 +74,6 @@ int main(){
         movedown(i, j);
       }
     }
-    
-    // for(int i=0; i<12; i++){
-    //   for(int j=0; j<6; j++){
-    //     cout<<board[i][j];
-    //   }
-    //   cout<<'\n';
-    // }
-    // cout<<"---------------------------------"<<'\n';
   }
   cout<<ans;
 }

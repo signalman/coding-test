@@ -4,7 +4,7 @@ using namespace std;
 int n;
 int b, c;
 long a[1000001];
-unsigned long long cnt;
+long cnt;
 
 int main(){
   ios_base::sync_with_stdio(0);
