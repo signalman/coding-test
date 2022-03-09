@@ -41,14 +41,17 @@ void move(){
             int nx = curx + dx[cur.dir];
             int ny = cury + dy[cur.dir];
             if(nx<1||ny<1||nx>R||ny>C){
-              nx = curx + dx[3-cur.dir];
-              ny = cury + dy[3-cur.dir];
+              cur.dir = 3-cur.dir;
+              nx = curx + dx[cur.dir];
+              ny = cury + dy[cur.dir];
             }
             curx = nx; cury = ny;
           }
-          board1[curx][cury].size < board[i][j].size ?  board1[curx][cury] = board[i][j] : board1[curx][cury] = board1[curx][cury];
+          board[i][j].dir = cur.dir;
+          if(board1[curx][cury].size> board[i][j].size) continue;
+          board1[curx][cury] = board[i][j];
         }
-        else if(cur.dir == 2 || cur.dir == 3){
+        else if(cur.dir == 3 || cur.dir == 4){
           cur.speed %= mod_C;
           int curx = i;
           int cury = j;
@@ -56,14 +59,16 @@ void move(){
             int nx = curx + dx[cur.dir];
             int ny = cury + dy[cur.dir];
             if(nx<1||ny<1||nx>R||ny>C){
-              nx = curx + dx[7-cur.dir];
-              ny = cury + dy[7-cur.dir];
+              cur.dir = 7-cur.dir;
+              nx = curx + dx[cur.dir];
+              ny = cury + dy[cur.dir];
             }
             curx = nx; cury = ny;
           }
-          board1[curx][cury].size < board[i][j].size ?  board1[curx][cury] = board[i][j] : board1[curx][cury];
+          board[i][j].dir = cur.dir;
+          if(board1[curx][cury].size> board[i][j].size) continue;
+          board1[curx][cury] = board[i][j];
         }
-        
       }
     }
   }
@@ -100,9 +105,19 @@ int main(){
     for(int i=1; i<=R; i++){
       if(board[i][king].size>0){
         ans+=board[i][king].size; 
-        board[i][king].size=0;}
+        board[i][king].size=0;
+        board[i][king].dir=0;
+        board[i][king].speed=0;
+        break;}
     }
     move();
+    // for(int i=1; i<=R; i++){
+    //   for(int j=1; j<=C; j++){
+    //     cout<<board[i][j].size<<' ';
+    //   }
+    //   cout<<'\n';
+    // }
   }
+  // cout<<'\n';
   cout<<ans;
 }
