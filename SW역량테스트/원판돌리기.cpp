@@ -2,16 +2,17 @@
 using namespace std;
 
 int n,m,t;
-vector<deque<int>> disk;
+vector<deque<int>> disk(n);
+vector<vector<int>> clone_disk;
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cin>>n>>m>>t;
+  int num;
   for(int i=1; i<=n; i++){
     for(int j=1; j<=m; j++){
-      int num;
       cin>>num;
-      disk[i].push_back(num);
+      // disk[i].push_back(num);
     }
   }
 
@@ -31,13 +32,71 @@ int main(){
         disk[i].pop_front();
       }
     }
+    memcpy(&clone_disk, &disk, sizeof(disk));
     //인접한 수를 모두 찾기
+    bool flag = false;
+
+    //같은 원판에서의 인접 확인
     for(int i=1; i<=n; i++){
-      for(int j=1; j<=m; j++){
-        cout<<disk[i].front();
-        disk[i].pop_front();
+      for(int j=1; j<m; j++){
+        if(disk[i][j]==disk[i][j+1]){
+          clone_disk[i][j] = -1;
+          clone_disk[i][j+1] = -1;
+          flag = true;
+        }
       }
-      cout<<'\n';
+      if(disk[i][1] == disk[i][m]){
+        clone_disk[i][1] = -1;
+        clone_disk[i][m] = -1;
+        flag = true;
+      }
+    }
+
+    //인접한 원판에서의 인접 확인
+    for(int i=1; i<n; i++){
+      for(int j=1; j<=m; j++){
+        if(disk[i][j] == disk[i+1][j]){
+          clone_disk[i][j] = -1;
+          clone_disk[i+1][j] = -1;
+          flag = true;
+        }
+      }
+    }
+    //인접한 수가 없는 경우
+    if(!flag){
+      int sum = 0;
+      int cnt = 0;
+      for(int i=1; i<=n; i++){
+        for(int j=1; j<=m; j++){
+          if(disk[i][j]==-1)continue;
+          sum += disk[i][j];
+          cnt++;
+        }
+      }
+      int avg = sum/cnt;
+      for(int i=1; i<=n; i++){
+        for(int j=1; j<=m; j++){
+          if(disk[i][j] == -1) continue;
+          if(disk[i][j] > avg) {
+            disk[i][j]++;
+          }
+          else{
+            disk[i][j]--;
+          }
+        }
+      }
+    }
+    else{
+      memcpy(&disk,&clone_disk, sizeof(clone_disk));
     }
   }
+  int ans = 0;
+  for(int i=1; i<=n; i++){
+    for(int j=1; j<=m; j++){
+      if(disk[i][j]==-1)continue;
+      ans+=disk[i][j];
+    }
+  }
+  cout<<ans;
+
 }
