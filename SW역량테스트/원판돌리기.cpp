@@ -1,102 +1,96 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n,m,t;
-vector<deque<int>> disk(n);
-vector<vector<int>> clone_disk;
+int n, m, t;
+int disk[51][51];
+void solve(int x, int d, int k){
+  int select = x - 1;
+  if(d==1)  k = -k;
+  
+  while(select < n){
+    int temp[51] = {0, };
+    for(int i=0; i<m; i++){
+      temp[(i + k + m) % m] = disk[select][i];
+    }
+    for(int i=0; i<m; i++){
+      disk[select][i] = temp[i];
+    }
+    select += x;
+  }
+  bool check[51][51] = {false, };
+  bool flag = false;
+  int dx[4] = {-1, 1, 0, 0};
+  int dy[4] = {0, 0, -1, 1};
+  for(int i=0; i<n; i++){
+    for(int j=0; j<m; j++){
+      for(int d=0; d<4; d++){
+        int nx = i + dx[d];
+        int ny = (j + dy[d] + m) % m;
+        if(nx < 0 || nx >= n)continue;
+        if(disk[i][j] != -1 && disk[nx][ny] != -1 && disk[i][j] == disk[nx][ny]){
+          flag = true;
+          check[i][j] = true;
+          check[nx][ny] = true;
+        }
+      }
+    }
+  }
+  if(flag){
+    //인접한 수 지우기
+    for(int i=0; i<n; i++){
+      for(int j=0; j<m; j++){
+        if(check[i][j]){
+          disk[i][j] = -1;
+        }
+      }
+    }
+  }
+  else{
+    //원판에 적힌 수의 평균 구하고 -1, +1
+    int sum, cnt = 0;
+    for(int i=0; i<n; i++){
+      for(int j=0; j<m; j++){
+        if(disk[i][j] == -1)continue;
+        sum += disk[i][j];
+        cnt ++;
+      }
+    }
+
+    for(int i=0; i<n; i++){
+      for(int j=0; j<m; j++){
+        if(disk[i][j] != -1){
+          if(disk[i][j]*cnt > sum){
+            disk[i][j]--;
+          }
+          else if(disk[i][j]*cnt < sum){
+            disk[i][j]++;
+          }
+        }
+      }
+    }
+  }
+
+}
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cin>>n>>m>>t;
-  int num;
-  for(int i=1; i<=n; i++){
-    for(int j=1; j<=m; j++){
-      cin>>num;
-      // disk[i].push_back(num);
+  for(int i=0; i<n; i++){
+    for(int j=0; j<m; j++){
+      cin>>disk[i][j];
     }
   }
-
   while(t--){
     int x, d, k;
-    //x의 배수인 원판을 회전시킨다.
     cin>>x>>d>>k;
-    for(int i=x; i<=n; i+=x){
-      if(d==0){//시계방향
-        int back = disk[i].back();
-        disk[i].push_front(back);
-        disk[i].pop_back();
-      }
-      else{//반시계 방향
-        int front = disk[i].front();
-        disk[i].push_back(front);
-        disk[i].pop_front();
-      }
-    }
-    memcpy(&clone_disk, &disk, sizeof(disk));
-    //인접한 수를 모두 찾기
-    bool flag = false;
-
-    //같은 원판에서의 인접 확인
-    for(int i=1; i<=n; i++){
-      for(int j=1; j<m; j++){
-        if(disk[i][j]==disk[i][j+1]){
-          clone_disk[i][j] = -1;
-          clone_disk[i][j+1] = -1;
-          flag = true;
-        }
-      }
-      if(disk[i][1] == disk[i][m]){
-        clone_disk[i][1] = -1;
-        clone_disk[i][m] = -1;
-        flag = true;
-      }
-    }
-
-    //인접한 원판에서의 인접 확인
-    for(int i=1; i<n; i++){
-      for(int j=1; j<=m; j++){
-        if(disk[i][j] == disk[i+1][j]){
-          clone_disk[i][j] = -1;
-          clone_disk[i+1][j] = -1;
-          flag = true;
-        }
-      }
-    }
-    //인접한 수가 없는 경우
-    if(!flag){
-      int sum = 0;
-      int cnt = 0;
-      for(int i=1; i<=n; i++){
-        for(int j=1; j<=m; j++){
-          if(disk[i][j]==-1)continue;
-          sum += disk[i][j];
-          cnt++;
-        }
-      }
-      int avg = sum/cnt;
-      for(int i=1; i<=n; i++){
-        for(int j=1; j<=m; j++){
-          if(disk[i][j] == -1) continue;
-          if(disk[i][j] > avg) {
-            disk[i][j]++;
-          }
-          else{
-            disk[i][j]--;
-          }
-        }
-      }
-    }
-    else{
-      memcpy(&disk,&clone_disk, sizeof(clone_disk));
-    }
+    solve(x, d, k);
   }
   int ans = 0;
-  for(int i=1; i<=n; i++){
-    for(int j=1; j<=m; j++){
-      if(disk[i][j]==-1)continue;
-      ans+=disk[i][j];
+  for(int i=0; i<n; i++){
+    for(int j=0; j<m; j++){
+      if(disk[i][j]==-1) continue;
+      ans += disk[i][j];
     }
   }
   cout<<ans;
-
 }
