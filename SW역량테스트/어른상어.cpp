@@ -88,8 +88,6 @@ int main()
           shark[s].x = nx;
           shark[s].y = ny;
           shark[s].dir = nd;
-          // board[nx][ny][0] = s;
-          // board[nx][ny][1] = k;
           break;
         }
       }
@@ -108,8 +106,6 @@ int main()
             shark[s].x = nx;
             shark[s].y = ny;
             shark[s].dir = nd;
-            // board[nx][ny][0] = s;
-            // board[nx][ny][1] = k;
             break;
           }
         }
@@ -160,15 +156,9 @@ int main()
     for(int s = 1; s<=m; s++){
       board[shark[s].x][shark[s].y][1]++;
     }
-
-  // for(int s = 1; s<=m; s++){
-  //   cout<< '{' << shark[s].x << ", " << shark[s].y << '}'<<' ';
-  // }
-
-  // cout<<'\n';
   }
   int ans = 0;
-  ans = (time>=1000) ? -1 : time;
+  ans = (time>1000) ? -1 : time;
   cout << ans;
   return 0;
 }
