@@ -4,7 +4,7 @@
 #define X first
 #define Y second
 using namespace std;
-
+vector<int> v;
 string solution(vector<int> numbers, string hand) {
     string answer = "";
     int board[4][3] = {
@@ -13,6 +13,7 @@ string solution(vector<int> numbers, string hand) {
         {7, 8, 9}, 
         {-1, 0, -1}
     };
+    
     pair<int, int> left = {3, 0};
     pair<int, int> right = {3, 2};
     for(int i=0; i<numbers.size(); i++){
