@@ -2,173 +2,118 @@
 using namespace std;
 #define X first
 #define Y second
-//위 아래 왼쪽 오른쪽
-int dx[4] = {-1, 1, 0, 0};
-int dy[4] = {0, 0, -1, 1};
-struct SHARK
-{
-  int x, y;
-  int dir;
-  int priority[4][4];
-};
-SHARK shark[401];
+int dx[] = {1, -1, 0, 0};
+int dy[] = {0, 0, 1, -1};
+int n, m, fuel;
+int board[21][21];
+int cnt;
+vector<vector<pair<int, int>>> info(2);
+bool check[401] = {false, };
 
-//상어 num 1~M, 1이 가장강함
-//냄새 k번 이동하면 사라짐
-int n, m, k;
-int board[20][20][2]; // 상어의 NUM, 남은 유효시간
+int dist(int from_x, int from_y,int to_x, int to_y){
+  queue<pair<int, int>> q;
+  bool vis[21][21] = {0,};
+  q.push({from_x, from_y});
+  vis[from_x][from_y]=true;
+  bool flag = false;
+  int length = 0;
+  while(!q.empty()){
+    auto cur = q.front();
+    for(int dir=0; dir<4; dir++){
+      int nx = cur.X + dx[dir];
+      int ny = cur.Y + dy[dir];
 
-int main()
-{
+      if(nx<0 || ny<0 || nx>=n ||ny>=n) continue;
+      if(board[nx][ny] == 1 || vis[nx][ny] == 1) continue;
+
+      q.push({nx, ny});
+      length++;
+      vis[nx][ny] = 1;
+      if(nx==to_x && ny==to_y) {flag = true; break;}
+    }
+    if(flag) break;
+  }
+  return length;
+}
+
+bool solve(vector<vector<pair<int, int>>> info, int car_x, int car_y, int fuel, int cnt){
+  if(cnt==m){
+    return true;
+  }
+
+  //가장 가까운 승객 찾기
+  //info 행, 열 순으로 정렬해놓기
+  //dist()함수를 만들어 승객과 택시사이의 거리를 반환하는 함수생성
+  //가장 작은것을 고름
+  int mndist = 0x7f7f7f7f;
+  pair<int, int> find_passenger;
+  pair<int, int> destination;
+  int idx;
+  for(int i=0; i<m; i++){
+    if(check[i])continue;
+    if(mndist > dist(car_x, car_y, info[i][0].X, info[i][0].Y)){
+      mndist = dist(car_x, car_y, info[i][0].X, info[i][0].Y);
+      find_passenger = info[i][0];
+      destination = info[i][1];
+      check[i] = true;
+    }
+  }
+
+  //dist와 연료를 비교하여 가능한지 판단
+  //불가능 -> return;
+  if(mndist > fuel){
+    return false;
+  }
+  //가능하다면 택시가 승객 위치로 이동, 남아있는 fuel 수정
+  car_x = find_passenger.X;
+  car_y = find_passenger.Y;
+  fuel -= mndist;
+
+  //택시와 목적지거리, 연료 비교하여 가능한지 판단
+  int des_dist = dist(car_x, car_y, destination.X, destination.Y);
+  
+  //불가능 -> return;
+  if(des_dist > fuel){
+    return false;
+  }
+
+  //가능하다면 택시가 목적지 위치로 이동 후 fuel 조정 후 erase
+  car_x = destination.X;
+  car_y = destination.Y;
+  fuel += des_dist;
+  cnt++;
+  solve(info, car_x, car_y, fuel, cnt);
+  return false;
+}
+
+int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
-  cin >> n >> m >> k;
-  for (int i = 0; i < n; i++)
-  {
-    for (int j = 0; j < n; j++)
-    {
-      cin >> board[i][j][0];
-      if (board[i][j][0] != 0)
-      {
-        board[i][j][1] = k;
-        shark[board[i][j][0]].x = i;
-        shark[board[i][j][0]].y = j;
-      }
+  cin>>n>>m>>fuel;
+  for(int i=0; i<n; i++){
+    for(int j=0; j<n; j++){
+      cin>>board[i][j];
     }
   }
-  // m개의 상어, 방향 입력
-  for (int i = 1; i <= m; i++)
-  {
-    int d;
-    cin >> d;
-    d--;
-    shark[i].dir = d;
+  int car_x, car_y;
+  cin>>car_x>>car_y;
+  for(int i=0; i<m; i++){
+    int st_row, st_col, end_row, end_col;
+    cin >> st_row >> st_col >> end_row >> end_col;
+    st_row--;
+    st_col--;
+    end_row--;
+    end_col--;
+    info[i].push_back({st_row, st_col});
+    info[i].push_back({end_row, end_col});
   }
-  //각 상어의 방향에 대한 우선순위 방향 입력
-  for (int s = 1; s <= m; s++)
-  {
-    for (int i = 0; i < 4; i++)
-    {
-      for (int j = 0; j < 4; j++)
-      {
-        int dir;
-        cin >> dir;
-        dir--;
-        shark[s].priority[i][j] = dir;
-      }
-    }
-  }
-  int test = 15;
-  int time = 0;
-  int flag = false;
-  while (time <= 1000 && !flag)
-  {
-    time++;
-    for (int s = 1; s <= m; s++)
-    {
-      //상어의 현재위치, 방향
-      if (shark[s].x == -1)
-        continue;
-      int cx = shark[s].x;
-      int cy = shark[s].y;
-      int cd = shark[s].dir;
-      bool empty = false;
-      //상어의 다음위치, 방향
-      for (int i = 0; i < 4; i++)
-      {
-        int nd = shark[s].priority[cd][i];
-        int nx = cx + dx[nd];
-        int ny = cy + dy[nd];
-        if (nx < 0 || ny < 0 || nx >= n || ny >= n)
-          continue;
-        if (board[nx][ny][0] == 0)
-        {
-          //상어의 이동 처리
-          empty = true;
-          shark[s].x = nx;
-          shark[s].y = ny;
-          shark[s].dir = nd;
-          // board[nx][ny][0] = s;
-          // board[nx][ny][1] = k;
-          break;
-        }
-      }
-      // 냄새가 있는 칸으로 이동
-      if (!empty)
-      {
-        for (int i = 0; i < 4; i++)
-        {
-          int nd = shark[s].priority[cd][i];
-          int nx = cx + dx[nd];
-          int ny = cy + dy[nd];
-          if (nx < 0 || ny < 0 || nx >= n || ny >= n)
-            continue;
-          if (board[nx][ny][0] == s && board[nx][ny][1]>0)
-          {
-            shark[s].x = nx;
-            shark[s].y = ny;
-            shark[s].dir = nd;
-            // board[nx][ny][0] = s;
-            // board[nx][ny][1] = k;
-            break;
-          }
-        }
-      }
-    }
-    //같은 칸에 있는 상어 처리
-    for (int s = 1; s <= m; s++)
-    {
-      if(shark[s].x == -1) continue;
-      int x = shark[s].x;
-      int y = shark[s].y;
-      for (int t = s + 1; t <= m; t++)
-      {
-        if (x == shark[t].x && y == shark[t].y)
-        {
-          shark[t].x = -1;
-          shark[t].y = -1;
-        }
-      }
-      board[shark[s].x][shark[s].y][0] = s;
-      board[shark[s].x][shark[s].y][1] = k;
-    }
-
-    int cnt = 0;
-    for(int s = 1; s<=m; s++){
-      if(shark[s].x != -1) cnt++;
-    }
-    if (cnt == 1)
-    {
-      flag = true;
-      break;
-    }
-
-     //냄새 유효시간 처리
-    for (int i = 0; i < n; i++)
-    {
-      for (int j = 0; j < n; j++)
-      {
-        if (board[i][j][1] == 0)
-          {board[i][j][0] = 0;
-          continue;}
-        board[i][j][1]--;
-        if(board[i][j][1] == 0){
-          board[i][j][0] = 0;
-        }
-      }
-    }
-    for(int s = 1; s<=m; s++){
-      board[shark[s].x][shark[s].y][1]++;
-    }
-
-  // for(int s = 1; s<=m; s++){
-  //   cout<< '{' << shark[s].x << ", " << shark[s].y << '}'<<' ';
-  // }
-
-  // cout<<'\n';
-  }
-  int ans = 0;
-  ans = (time>=1000) ? -1 : time;
-  cout << ans;
+  
+  sort(info.begin(), info.end());
+  
+  bool pos = solve(info, car_x, car_y, fuel, 0);
+  if(pos)
+    cout<<fuel;
+  else
+    cout<<-1;
   return 0;
 }
