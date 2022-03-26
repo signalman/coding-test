@@ -2,118 +2,113 @@
 using namespace std;
 #define X first
 #define Y second
-int dx[] = {1, -1, 0, 0};
-int dy[] = {0, 0, 1, -1};
-int n, m, fuel;
+int dx[] = {-1, 0, 0, 1};
+int dy[] = {0, -1, 1, 0};
+int n, m;
+long long fuel;
+bool vis[21];
+vector<vector<int>> info;
 int board[21][21];
-int cnt;
-vector<vector<pair<int, int>>> info(2);
-bool check[401] = {false, };
 
-int dist(int from_x, int from_y,int to_x, int to_y){
+int dist(int from_x, int from_y, int to_x, int to_y){
+  if(from_x == to_x && from_y == to_y) return 0;
   queue<pair<int, int>> q;
-  bool vis[21][21] = {0,};
+  int d[21][21] = {0,};
+  for(int i=0; i<n; i++){
+    for(int j=0; j<n; j++){
+      d[i][j] = -1;
+    }
+  }
+  d[from_x][from_y] = 0;
   q.push({from_x, from_y});
-  vis[from_x][from_y]=true;
-  bool flag = false;
-  int length = 0;
   while(!q.empty()){
     auto cur = q.front();
-    for(int dir=0; dir<4; dir++){
+    q.pop();
+    for(int dir = 0; dir < 4; dir++){
       int nx = cur.X + dx[dir];
       int ny = cur.Y + dy[dir];
-
-      if(nx<0 || ny<0 || nx>=n ||ny>=n) continue;
-      if(board[nx][ny] == 1 || vis[nx][ny] == 1) continue;
-
+      if(nx<0 || ny<0 || nx>=n || ny>=n)continue;
+      if(board[nx][ny] == 1 || d[nx][ny]>=0) continue;
       q.push({nx, ny});
-      length++;
-      vis[nx][ny] = 1;
-      if(nx==to_x && ny==to_y) {flag = true; break;}
+      d[nx][ny] = d[cur.X][cur.Y] + 1;
+      if(nx == to_x && ny==to_y) return d[nx][ny];
     }
-    if(flag) break;
   }
-  return length;
+  return -1;
 }
 
-bool solve(vector<vector<pair<int, int>>> info, int car_x, int car_y, int fuel, int cnt){
-  if(cnt==m){
+
+bool solution(vector<vector<int>> info, int taxi_x, int taxi_y, int cnt){
+  if(cnt == m){
     return true;
   }
-
-  //가장 가까운 승객 찾기
-  //info 행, 열 순으로 정렬해놓기
-  //dist()함수를 만들어 승객과 택시사이의 거리를 반환하는 함수생성
-  //가장 작은것을 고름
+  
+  //방문하지 않은 승객 중, 가장 가까운 승객 찾기
   int mndist = 0x7f7f7f7f;
-  pair<int, int> find_passenger;
+  pair<int, int> passenger;
   pair<int, int> destination;
-  int idx;
+  int vis_idx;
   for(int i=0; i<m; i++){
-    if(check[i])continue;
-    if(mndist > dist(car_x, car_y, info[i][0].X, info[i][0].Y)){
-      mndist = dist(car_x, car_y, info[i][0].X, info[i][0].Y);
-      find_passenger = info[i][0];
-      destination = info[i][1];
-      check[i] = true;
+    if(vis[i]) continue;
+    int d = dist(info[i][0], info[i][1], taxi_x, taxi_y);
+    if(d == -1) return false;
+    if(mndist>d){
+      mndist = d;
+      passenger = {info[i][0], info[i][1]};
+      destination = {info[i][2], info[i][3]};
+      vis_idx = i;
     }
+    
   }
-
-  //dist와 연료를 비교하여 가능한지 판단
-  //불가능 -> return;
+  //연료가 부족하면 false
   if(mndist > fuel){
     return false;
   }
-  //가능하다면 택시가 승객 위치로 이동, 남아있는 fuel 수정
-  car_x = find_passenger.X;
-  car_y = find_passenger.Y;
+
+  taxi_x = passenger.X;
+  taxi_y = passenger.Y;
   fuel -= mndist;
 
-  //택시와 목적지거리, 연료 비교하여 가능한지 판단
-  int des_dist = dist(car_x, car_y, destination.X, destination.Y);
-  
-  //불가능 -> return;
-  if(des_dist > fuel){
+  int d = dist(taxi_x, taxi_y, destination.X, destination.Y);
+  if(d == -1 || d > fuel){
     return false;
   }
-
-  //가능하다면 택시가 목적지 위치로 이동 후 fuel 조정 후 erase
-  car_x = destination.X;
-  car_y = destination.Y;
-  fuel += des_dist;
+  
+  taxi_x = destination.X;
+  taxi_y = destination.Y;
+  fuel += d;
+  vis[vis_idx] = true;
   cnt++;
-  solve(info, car_x, car_y, fuel, cnt);
-  return false;
+  return solution(info, taxi_x, taxi_y, cnt);
 }
+
 
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cin>>n>>m>>fuel;
+
   for(int i=0; i<n; i++){
     for(int j=0; j<n; j++){
       cin>>board[i][j];
     }
   }
-  int car_x, car_y;
-  cin>>car_x>>car_y;
+  int taxi_x, taxi_y;
+  cin>>taxi_x>>taxi_y;
+  taxi_x--, taxi_y--;
   for(int i=0; i<m; i++){
-    int st_row, st_col, end_row, end_col;
-    cin >> st_row >> st_col >> end_row >> end_col;
-    st_row--;
-    st_col--;
-    end_row--;
-    end_col--;
-    info[i].push_back({st_row, st_col});
-    info[i].push_back({end_row, end_col});
+    vector<int> v;
+    for(int j=0; j<4; j++){
+      int s;
+      cin>>s;
+      s--;
+      v.push_back(s);
+    }
+    info.push_back(v);
   }
-  
   sort(info.begin(), info.end());
-  
-  bool pos = solve(info, car_x, car_y, fuel, 0);
-  if(pos)
-    cout<<fuel;
-  else
-    cout<<-1;
-  return 0;
+  bool pos = solution(info, taxi_x, taxi_y, 0);
+  int ans = pos ? fuel : -1;
+  cout<<ans;
+
 }
