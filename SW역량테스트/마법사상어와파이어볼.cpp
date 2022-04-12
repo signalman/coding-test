@@ -25,6 +25,7 @@ int main(){
     f.d = d;
     v.push_back(f);
   }
+  //solution
   while(k--){
     //MAP초기화
     for(int i=0; i<n; i++){
