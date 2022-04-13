@@ -18,7 +18,7 @@ bool solution(vector<string> phone_book) {
                 flag = false;
             }
         }
-       if(!flag) return flag;
+      if(!flag) return flag;
     }
     return flag;
 
