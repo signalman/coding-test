@@ -4,7 +4,8 @@ using namespace std;
 int dx[] = {0, 1, 0, -1};
 int dy[] = {-1, 0, 1, 0};
 
-int n;
+int n; 
+
 int MAP[500][500];
 int sandX[4][10] = {
   {0, -1, 1, -2, -1, 1, 2, -1, 1, 0},
