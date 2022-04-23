@@ -42,6 +42,7 @@ int wind(int dir, int x, int y){
   }
   return ret;
 
+
 }
 
 int ret;
