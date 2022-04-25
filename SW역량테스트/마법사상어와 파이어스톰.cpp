@@ -23,6 +23,7 @@ int main(){
   while(!level.empty()){
     int cur = level.front();
     level.pop();
-    
+
   }
+  return 0;
 }
