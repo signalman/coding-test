@@ -1,29 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define MAX 64
 
-//돌리고 인접면이 2개 이하인 칸에대해 1이 줄어든다
 int n, q;
-int MAP[65][65];
-queue<int> level;
+int board[MAX][MAX];
+int dx[] = {-1, 1, 0, 0};
+int dy[] = {0, 0, -1, 1};
+void rotate(int r, int c, int L){
+  for(int i=0; i<L; i++){
+    for(int j=0; j<L; j++){
+      swap(board[r+i][c+j], board[r+L-1-j][c+i]);
+    }
+  }
+}
+
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cin>>n>>q;
-  for(int i=0; i<(1<<n); i++){
-    for(int j=0; j<(1<<n); j++){
-      cin>>MAP[i][j];
-    }
-  }
-  for(int i=0; i<q; i++){
-    int t;
-    cin>>t;
-    level.push(t);
-  }
 
-  while(!level.empty()){
-    int cur = level.front();
-    level.pop();
-
-  }
-  return 0;
 }
