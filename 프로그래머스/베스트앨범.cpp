@@ -11,7 +11,6 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
     vector<int> answer;
     vector<pair<int, pair<string, int>>> info;
     unordered_map<string, int> map;
-
     for(int i=0; i<genres.size(); i++){
         map[genres[i]]+=plays[i];
         pair<string, int> gp;
@@ -22,7 +21,6 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
         id.second = gp;
         info.push_back(id);
     }
-
     sort(info.begin(), info.end(), comp1);
     vector<pair<string, int>> v(map.begin(), map.end());
     sort(v.begin(), v.end(), comp2);
