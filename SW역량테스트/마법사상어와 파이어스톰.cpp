@@ -34,8 +34,8 @@ int getBiggest(){
                 ret=max(ret,dfs(i,j));
     return ret;
 }
- 
- 
+
+
 // 얼음 합 반환
 int getSum(){
     int ret=0;
