@@ -1,38 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define MAX 20
-//비어있는 칸 중에서 좋아하는 학생이 인접한 칸에 가장 많은 칸으로 자리를 정한다.
-// 1을 만족하는 칸이 여러 개이면, 인접한 칸 중에서 비어있는 칸이 가장 많은 칸으로 자리를 정한다.
-// 2를 만족하는 칸도 여러 개인 경우에는 행의 번호가 가장 작은 칸으로, 그러한 칸도 여러 개이면 열의 번호가 가장 작은 칸으로 자리를 정한다.
 
 int n;
 int board[MAX][MAX];
-int like_cnt[MAX][MAX];
-int empty_cnt[MAX][MAX];
-vector<vector<int>> v;
+struct STUDENT
+{
+  int num;
+  int like[4];
+};
+vector<STUDENT> dt;
+void solve(){
+
+}
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cin>>n;
-  int p = pow(n, 2);
-  for(int i=0; i<p; i++){
-    vector<int> v1;
-    for(int j=0; j<5; j++){
-      int a;
-      cin>>a;
-      v1.push_back(a);
+  for(int i=0; i<pow(n,2); i++){
+    STUDENT s;
+    int number;
+    cin>>number;
+    s.num = number;
+    for(int t = 0; t < 4; t++){
+      int like;
+      cin>>like;
+      s.like[t] = like;
     }
-    v.push_back(v1);
-  }
-  for(int i=0; i<v.size(); i++){
-    //인접한 칸에 좋아하는 학생의 수 CNT
-
-
-    //인접한 칸 중 비어있는 칸이 가장 많은 칸 선택
-
-
-    //행번호, 열번호 MIN 선택
+    dt.push_back(s);
   }
 
+  for(int i=0; i<dt.size(); i++){
+    int st_num = dt[i].num;
+    
+  }
 
+  //현재 dt에 num의 좋아하는 학생의 번호를 파악 후 인접한 자리를 +1
+  //max 값을 추적, 찾으면 업데이트 (vector 초기화 후 i, j저장)
+  //같은 값이 나오면 새로운 vector에 i, j를 저장
+  //vector의 값이 하나 이면 그대로 확정
+  //두개 이상이면 그 칸 중 인접한 칸중 가장 많은 칸으로 자리 확정
+  //그래도 두개 이상이면 맨 앞의 값으로 확정
 }
