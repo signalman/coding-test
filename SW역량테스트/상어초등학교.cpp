@@ -13,7 +13,7 @@ struct STUDENT
 };
 STUDENT st[400];
 
-int getPoint(int x, int y, int i){
+int getPoint(int x, int y, int s){
   int point  = 0;
   for(int i=0; i<4; i++){
     int nx = x + dx[i];
@@ -22,7 +22,7 @@ int getPoint(int x, int y, int i){
     if(board[nx][ny] == 0) point++;
     else{
       for(int j=0; j<4; j++){
-        if(board[nx][ny] == st[i].fri[j]) point += 10;
+        if(board[nx][ny] == st[s].fri[j]) point += 10;
       }
     }
   }
@@ -82,14 +82,6 @@ int main(){
   for(int i=0; i<n*n; i++){
     ret += calcPoint(i);
   }
-  // cout<<ret;
-
-
-  for(int i=0; i<n; i++){
-    for(int j=0; j<n; j++){
-      cout<<board[i][j]<< ' ';
-    }
-    cout<<'\n';
-  }
+  cout<<ret;
   return 0;
 }
