@@ -14,7 +14,7 @@ vector<int> solution(vector<int> answers) {
 
         if (answers[i] == math[2][i % math[2].size()]) count[2]++;
 
-    }
+    } 
 
     int max = *max_element(count.begin(), count.end());
 
