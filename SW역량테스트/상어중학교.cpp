@@ -13,8 +13,6 @@ using namespace std;
 //findLargestBlock -> 
 
 
-
-
 int N, M;
 int MAP[21][21];
 int dx[4] = {-1, 0, 1, 0};
