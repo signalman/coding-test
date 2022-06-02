@@ -65,13 +65,13 @@ BLOCK BFS(int a, int b, int Color)
     Q.push(make_pair(a, b));
     Visit[a][b] = true;
     int Rainbow = 0;
-
+ 
     while (Q.empty() == false)
     {
         int x = Q.front().first;
         int y = Q.front().second;
         Q.pop();
-
+ 
         for (int i = 0; i < 4; i++)
         {
             int nx = x + dx[i];
@@ -101,7 +101,7 @@ BLOCK BFS(int a, int b, int Color)
             }
         }
     }
-
+ 
     sort(Except_Rainbow_Block.begin(), Except_Rainbow_Block.end(), Cmp);
     BLOCK R_Block;
     R_Block.Size = Block.size();
@@ -111,7 +111,7 @@ BLOCK BFS(int a, int b, int Color)
     R_Block.Block_Pos = Block;
     return R_Block;
 }
-
+ 
 bool Compare_Block(BLOCK A, BLOCK B)
 {
     if (A.Size >= B.Size)
