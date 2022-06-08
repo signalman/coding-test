@@ -63,6 +63,7 @@ int main(){
             A[x][y] += cnt;
         }
 
+
         // 구름 생성
         vector<pair<int, int>> New_Cloud;
         for(int a=0; a<N; a++){
