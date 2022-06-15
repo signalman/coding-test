@@ -17,7 +17,7 @@ vector<string> spl(string s){
     }
     return ret;
 }
-
+        
 vector<string> solution(vector<string> record) {
     vector<vector<string>> v;
     vector<string> answer;
