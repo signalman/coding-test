@@ -1,21 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
-long long a, b, c;
-long long sum;
-
-void multi(long long x, long long y){
-    if(y==b) return;
-    sum = (sum * x) % c;
-    multi(x, y+1);
+ll POW(ll a, ll b, ll m){
+    if(b==1)return a%m;
+    ll val = POW(a, b/2, m);
+    val = val * val % m; 
+    if(b%2 == 0) return val;
+    return val * a % m;
 }
+
 int main(){
-    ios_base::sync_with_stdio(0);
+    ios::sync_with_stdio(0);
     cin.tie(0);
-
+    ll a,b,c;
     cin>>a>>b>>c;
-    sum = a;
-    multi(a, 0);
-    cout<<sum<<'\n';
-
+    cout<<POW(a,b,c);
+    return 0;
 }
