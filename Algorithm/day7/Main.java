@@ -8,7 +8,7 @@ public class Main {
     static int dy[] = {1, -1, 0, 0};
     static int N;
     static ArrayList<Integer> ret;
-    static public class Pair{
+    public static class Pair{
         int a;
         int b;
         Pair(int a, int b){
