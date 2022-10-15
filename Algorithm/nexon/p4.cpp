@@ -23,7 +23,7 @@ int main(){
 
     for(int i=1; i<=n; i++){
         for(int j=1; j<=n; j++){
-            if(board[i][j] == 0x7f7f7f7f) board[i][j] = 0;
+            if(board[i][j] == 0x3f3f3f3f) board[i][j] = 0;
             cout<<board[i][j]<<' ';
         }
         cout<<'\n';
