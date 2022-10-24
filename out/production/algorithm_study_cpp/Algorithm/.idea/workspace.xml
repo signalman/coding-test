@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4209023f-f4c3-4dc5-a249-487b1aab27cd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/day11/P1.java" beforeDir="false" afterPath="$PROJECT_DIR$/day11/P1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/day13/P1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/day13/P2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day12/P1/P1.java" beforeDir="false" afterPath="$PROJECT_DIR$/day12/P1/P1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day12/P2.java" beforeDir="false" afterPath="$PROJECT_DIR$/day12/P2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/algorithm_study_cpp/Algorithm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/algorithm_study_cpp/Algorithm/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/algorithm_study_cpp/Algorithm/day12/P1/P1$Pair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/algorithm_study_cpp/Algorithm/day12/P1/P1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/algorithm_study_cpp/Algorithm/day12/P1/P1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/algorithm_study_cpp/Algorithm/day12/P2$Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/algorithm_study_cpp/Algorithm/day12/P2$Pair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/algorithm_study_cpp/Algorithm/day12/P2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/algorithm_study_cpp/Algorithm/day12/P2.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +72,9 @@
       <workItem from="1665155847131" duration="20000" />
       <workItem from="1665155994550" duration="286000" />
       <workItem from="1665889390621" duration="192000" />
+      <workItem from="1665930415706" duration="631000" />
+      <workItem from="1665984401571" duration="35000" />
+      <workItem from="1666329948449" duration="22000" />
     </task>
     <servers />
   </component>
@@ -74,7 +86,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

@@ -10,14 +10,6 @@ public class P1 {
     static int[][] board;
     static int blue;
     static int white;
-    static class Pair{
-        int x, y;
-        Pair(int x, int y){
-            this.x = x;
-            this.y = y;
-        }
-    }
-
     static boolean isOneFill(int x1, int y1, int x2, int y2){
         for(int i=x1; i<x2; i++){
             for(int j=y1; j<y2; j++){

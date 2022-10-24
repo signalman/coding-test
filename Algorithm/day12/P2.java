@@ -17,7 +17,6 @@ public class P2 {
     static int[] dy = {-1, 0, 0, 1};
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static ArrayList<Integer> ret = new ArrayList<>();
-
     static class Pair{
         int x, y;
         Pair(int x, int y){
@@ -25,12 +24,11 @@ public class P2 {
             this.y = y;
         }
     }
-
     public static void main(String[] args) throws IOException {
         testCase = Integer.parseInt(br.readLine());
         while(testCase-- > 0){
             Queue<Pair> queue = new LinkedList<>();
-            Queue<Pair>[] door = new LinkedList[26];
+            Queue<Pair>[] door = new LinkedList[26]; //열쇠가 없어서 방문하지 못한 문의 큐 배열
             int cnt = 0;
             StringTokenizer st = new StringTokenizer(br.readLine());
             h = Integer.parseInt(st.nextToken());
