@@ -11,21 +11,34 @@ import java.util.stream.Stream;
 public class Tests {
     public static void main(String[] args) {
 
-        ArrayList<Integer> arr = new ArrayList<>();
-        arr.add(2);
-        arr.add(2);
-        arr.add(1);
-        arr.add(3);
-        arr.add(3);
-        arr.add(3);
-        arr.add(3);
-        arr.add(4);
-        arr.stream().sorted().distinct().forEach(System.out::println);
-        Integer reduce = arr.stream().filter(i -> i % 2 == 0).reduce(3, (a, b) -> a + b);
-        System.out.println("reduce: " + reduce);
-        arr.stream().collect(Collectors.toList());
-        arr.stream().collect(Collectors.counting());
+        int[][] board = {{1, 2, 3}, {4, 5, 6,}, {7, 8, 9,}};
+
+        int[][] clone = board.clone();
+        int[][] e = new int[3][3];
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                e[i][j] = board[i][j];
+            }
+        }
 
 
+        for (int[] ints : e) {
+            for (int anInt : ints) {
+                System.out.print(anInt+ " ");
+            }
+            System.out.println();
+        }
+
+        for (int[] ints : clone) {
+            for (int anInt : ints) {
+                System.out.print(anInt+ " ");
+            }
+            System.out.println();
+        }
+
+    }
+
+    private static void func(int[][] board) {
+        board[1][1] = 1002;
     }
 }
