@@ -39,7 +39,7 @@ public class P3 {
 
         for(int i=idx; i<N*N; i++){
             int x = i / N;
-            int y = i % N;
+            int y = idx % N;
 
             if(board[x][y] == 0 || isBlack[x][y] != black || !check(x, y)) continue;
             visited[x][y] = true;
@@ -50,7 +50,7 @@ public class P3 {
     }
 
     static boolean check(int x, int y) {
-        for (int dir = 0; dir < 4; dir++) {
+        for (int dir = 0; dir < 2; dir++) {
             int cnt = 0;
             while (true) {
                 int nx = x + (dx[dir] * cnt);
