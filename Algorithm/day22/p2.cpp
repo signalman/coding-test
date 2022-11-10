@@ -62,12 +62,33 @@ int func2(){
     return ret;
 }
 
-
-int (*makeShape1(int d))[3]{
-    
-    int arr[2][3] = {{0, 0, 0},{0, 0, 0}};
-
-    return arr;
+int arr[2][3];
+void makeShape1(int d){
+    int arr[2][3];
+    if(d == 0){
+        int ret[2][3] = {{0, 1, 1}, {1, 1, 0}};
+    }
+    else if(d== 1){
+        int ret[2][3] = {{1, 0, 0}, {1, 1, 1}};
+    }
+    else if(d==2){
+        int ret[2][3] = {{0, 0, 1}, {1, 1, 1,}};
+    }
+    else if(d==3){
+        int ret[2][3] = {{1, 1, 1}, {0, 1, 0}};
+    }
+    else if(d==4){
+        int ret[2][3] = {{1, 1, 0}, {0,1, 1}};
+    }
+    else if(d==5){
+        int ret[2][3]  = {{1, 1, 1}, {1, 0, 0}};
+    }
+    else if(d==6){
+        int ret[2][3] = {{1, 1, 1}, {0, 0, 1}};
+    }
+    else {
+        int ret[2][3] = {{0, 1, 0}, {1, 1, 1}};
+    }
 }
 
 //3. 2행 3열 직사각형
