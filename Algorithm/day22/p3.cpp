@@ -33,6 +33,7 @@ int main(){
     {
         /* code */
         int cpyboard[10][10]; 
+        // copy(&board[0][0], &board[0][0]+n*m, &cpyboard[0][0]);
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
                 cpyboard[i][j] = board[i][j];
