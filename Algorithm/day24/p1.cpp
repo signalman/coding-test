@@ -32,26 +32,26 @@ void playGame(vector<int> new_innings[MX]){
     int outCount = 0;
     int totalScore = 0;
     int person = 0;
-    deque<int> list;
+    deque<int> deq;
 
     for(int i=0; i<N; i++){ //새 이닝 시작
         outCount = 0;
-        list.clear();
+        deq.clear();
         while(outCount < 3){ //한 이닝 동안
             int hit = new_innings[i][person];
             if(hit == 0){
                 outCount++;
             }
             else{
-                if(!list.empty()){
-                    for(auto& l: list){
+                if(!deq.empty()){
+                    for(auto& l: deq){
                         l += hit;
                     }
                 }
-                list.push_back(hit);
-                while(!list.empty() && list.front() >= 4){
+                deq.push_back(hit);
+                while(!deq.empty() && deq.front() >= 4){
                     totalScore++;
-                    list.pop_front();
+                    deq.pop_front();
                 }
             }
             person = (person + 1) % 9;
