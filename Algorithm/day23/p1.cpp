@@ -10,7 +10,7 @@ int dy[] = { 1, 0, -1, 0 };
 
 pair<int, int> move(int x, int y, int rx, int ry) {
     //x - rx , y - ry 평행이동
-    //y - ry, -x + rx 90도 회전          
+    //y - ry, -x + rx 90도 회전
 	return make_pair(y - ry + rx, -x + rx + ry);
 }
 
