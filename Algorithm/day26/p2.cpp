@@ -37,6 +37,7 @@ int main(){
 
     do{
         int cpyBoard[51][51];
+        int times = 0;
         for(int i=0; i<N; i++){
             for(int j=0; j<N; j++){
                 cpyBoard[i][j] = distBoard[i][j];
@@ -61,6 +62,7 @@ int main(){
                 if(cpyBoard[nx][ny] != -1) continue;
                 cpyBoard[nx][ny] = cpyBoard[cur.first][cur.second] + 1;
                 q.push({nx, ny});
+                if(board[nx][ny] != 2) times = cpyBoard[nx][ny];
             }
         }
 
@@ -74,7 +76,7 @@ int main(){
             }
         }
         
-        if(flag) minTime = min(minTime, ret);
+        if(flag) minTime = min(minTime, times);
         
 
     }while(prev_permutation(tmp, tmp + canVirus.size()));
