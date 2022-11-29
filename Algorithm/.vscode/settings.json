@@ -3,6 +3,7 @@
         "map": "cpp",
         "iostream": "cpp",
         "new": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "tuple": "cpp"
     },
 }
