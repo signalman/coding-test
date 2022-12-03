@@ -71,6 +71,20 @@ vector<string> split(string str, string deli){
     return ret;
 }
 
+
+vector<string> split(string str, string deli){
+    vector<string> ret;
+    string tmp = "";
+    long long pos = 0;
+    while((pos = str.find(deli)) != string::npos){
+        tmp = str.substr(0, pos);
+        ret.push_back(tmp);
+        str.erase(0, pos + deli.length());
+    }
+    ret.push_back(str);
+    return ret;
+}
+
 int tmp[5];
 int main(){
     ios_base::sync_with_stdio(0);
