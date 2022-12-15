@@ -12,13 +12,15 @@ int main(){
         arr[i] = i+1;
     }
 
-    int step = 0;
-    int curIdx = 0;
+    long long step = 0;
+    long long curIdx = 0;
 
     while(arr.size() > 1){
         step++;
-        int nxtIdx = (curIdx + step * step * step - 1) % arr.size();
-
+        long long nxtIdx = (curIdx + (step * step * step - 1) % arr.size()) % arr.size();
+        // cout<<"erased Number: " << arr[nxtIdx]<<'\n';
+        vector<int>::iterator nxtStepIter = arr.erase(arr.begin() + nxtIdx);
+        curIdx = nxtStepIter - arr.begin();
     }
-
+    cout<<arr.front();
 }
