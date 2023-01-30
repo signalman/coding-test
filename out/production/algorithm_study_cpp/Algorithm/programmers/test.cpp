@@ -24,9 +24,7 @@ int main(){
     func(board);
     
     for(int i=0; i<5; i++){
-
         for(int j=0; j<5; j++){
-
             for(int k=0; k<5; k++){
                 cout<<board[i][j][k]<<' ';
             }
@@ -35,6 +33,4 @@ int main(){
         cout<<'\n';
     }
         cout<<'\n';
-
-
 }
