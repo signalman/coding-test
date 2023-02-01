@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 
 int k, l;
-map<string, int> m;
+unordered_map<string, int> m;
 bool cmp(pair<string, int>& a, pair<string, int>& b) {
 	return a.second < b.second;
 }
@@ -14,6 +15,7 @@ int main() {
 		cin >> str;
 		m[str] = i;
 	}
+
 
 	vector<pair<string, int>> v(m.begin(), m.end());
 	//sort(v.begin(), v.end(), [](auto& a, auto& b) {return a.second < b.second; });
