@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string alp[5] = {"A", "E", "I", "O", "U"};
+string alp[6] = {"A", "E", "I", "O", "U"};
 vector<string> ret;
 
 void dfs(int idx, string str){
@@ -10,13 +10,10 @@ void dfs(int idx, string str){
         return;
     }
     
-    for(int i=0; i<=5; i++){
-        if(i == 5) {
-            dfs(idx+1, str); 
-            continue;
-        }
+    for(int i=0; i<5; i++){
         dfs(idx+1, str + alp[i]);
     }
+    dfs(idx+1, str);
 }
 
 int solution(string word) {
@@ -24,10 +21,6 @@ int solution(string word) {
     dfs(0, "");
     sort(ret.begin(), ret.end());
     ret.erase(unique(ret.begin(), ret.end()), ret.end());
-    // for(int i=0; i<30; i++){
-    //     cout<<ret[i]<< ' ';
-    // }
-    
     int idx = find(ret.begin(), ret.end(), word) - ret.begin();
     return idx;
 }
