@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class Main {
+public class 탑 {
 
     static class Pair{
         int x, y;
