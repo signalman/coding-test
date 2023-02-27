@@ -114,8 +114,9 @@ public class 감시 {
 
             if(nx < 0 || ny < 0 || nx >= N || ny >= M) break;
             if(_map[nx][ny] == '6') break;
-
-            _map[nx][ny] = '7';
+            if(_map[nx][ny] == '0'){
+                _map[nx][ny] = '7';
+            }
             x = nx;
             y = ny;
         }
