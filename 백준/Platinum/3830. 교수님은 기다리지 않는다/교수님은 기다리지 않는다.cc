@@ -1,58 +1,51 @@
-#include <iostream>
-#include <cstring>
-#define MAX 100005
-#define ll long long
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int N, M;
-int p[MAX];
-ll dist[MAX];
+vector<int> p(100003, -1);
+vector<long long> weight(100003, 0);
 
-int find(int node){
-    if(p[node] == -1) return node;
-    int parent = find(p[node]);
-    dist[node] += dist[p[node]];
-    return p[node] = parent;
+int find(int x){
+    if(p[x] < 0) return x;
+    int parent = find(p[x]);
+    weight[x] += weight[p[x]];
+    return p[x] = parent;
 }
 
-void merge(int a, int b, int w){
-    int roota = find(a);
-    int rootb = find(b);
-
-    if(roota == rootb) return;
-    dist[rootb] = dist[a] - dist[b] + w;
-    p[rootb] = roota;
-    return;
+bool uni(int u, int v, int w){
+    int rootu = find(u); int rootv = find(v);
+    if(rootu == rootv) return 0;
+    weight[rootv] = weight[u] - weight[v] + w;
+    p[rootv] = rootu;
+    return 1;
 }
-
 
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
     while(1){
-        memset(p, -1, sizeof(p));
-        memset(dist, 0, sizeof(dist));
+        int n, m;
+        cin >> n >> m;
+        if(n == 0 && m == 0) break;
+        //초기화
+        fill(p.begin(), p.begin() + n + 1, -1);
+        fill(weight.begin(), weight.begin() + n + 1, 0);
 
-        cin>>N>>M;
-        if(N == 0 && M == 0) break;
-        char op;
-        int a, b, w;
-        for(int i=0; i<M; i++){
-            cin>>op;
-            if(op == '!'){
-                cin>>a>>b>>w;
-                merge(a, b, w);
+        for(int i=0; i<m; i++){
+            char oper;
+            int a, b, w;
+            cin>>oper;
+            if(oper == '!'){
+                cin >> a >> b >> w;
+                uni(a, b, w);
             }
-            else{
-                cin>>a>>b;
-                if(find(a) != find(b)){
-                    cout<<"UNKNOWN\n";
-                }
-                else cout<<dist[b] - dist[a] <<'\n';
+            else if(oper == '?'){
+                cin >> a >> b;
+                //다른 그룹
+                if(find(a) != find(b)) cout<<"UNKNOWN\n";
+                //같은 그룹
+                else cout<<weight[b] - weight[a] <<'\n';
             }
-        
         }
     }
 }
