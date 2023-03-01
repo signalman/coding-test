@@ -18,14 +18,12 @@ public class D4_1238_Contact {
 
         while(!queue.isEmpty()) {
             int cur = queue.poll();
-
             for(int nxt: adjList[cur]) {
                 if(vis[nxt] > 0) continue;
                 queue.add(nxt);
                 vis[nxt] = vis[cur] + 1;
             }
         }
-
         int cnt = 0;
         for(int i=1; i<=100; i++) {
             if(vis[i] > 0) {
@@ -37,13 +35,11 @@ public class D4_1238_Contact {
                 ans = Math.max(ans, i);
             }
         }
-
     }
-
     public static void main(String[] args) throws NumberFormatException, IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         for(int tc = 1; tc<=10; tc++) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             StringTokenizer st = new StringTokenizer(br.readLine());
 
             N = Integer.parseInt(st.nextToken());
@@ -56,16 +52,14 @@ public class D4_1238_Contact {
             for(int i=0; i<=100; i++) {
                 adjList[i] = new ArrayList<>();
             }
-
             st = new StringTokenizer(br.readLine());
             for(int i=0; i<N/2; i++) {
                 int from = Integer.parseInt(st.nextToken());
                 int to = Integer.parseInt(st.nextToken());
                 adjList[from].add(to);
             }
-
             bfs(START);
-            System.out.println("#" + tc + "  "+ ans);
+            System.out.println("#" + tc + " "+ ans);
         }
     }
 }
