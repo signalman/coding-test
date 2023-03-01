@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class SW_4013_특이한자석 {
+public class SW_4013_특이한자석_신호인 {
 
     static int[][] magnet;
 

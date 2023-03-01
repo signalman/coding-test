@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class 감시 {
+public class BJ_15683_감시_신호인 {
 
     static int N, M;
     static char[][] map;
