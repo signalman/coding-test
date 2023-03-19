@@ -35,7 +35,7 @@ int main()
         cin >> u >> v >> c;
         adj[v].push_back({c, u});
     }
-    fill(d + 1, d + n + 1, 0x7f7f7f7f);
+    fill(d + 1, d + n + 1, 0x7f7f7f7f7f7f);
     for (int i = 0; i < k; i++)
     {
         int r;
