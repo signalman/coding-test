@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+    
         {
             "name": "C/C++: cpp.exe 활성 파일 빌드 및 디버그",
             "type": "cppdbg",
