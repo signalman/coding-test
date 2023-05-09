@@ -26,18 +26,13 @@ public class 스도쿠 {
                     rowVis[i] |= (1<<map[i][j]);
                     colVis[j] |= (1<<map[i][j]);
                     boxVis[(i / 3) * 3 + j/3] |= (1<<map[i][j]);
-                    /*
-                    rowVis[i] = (1<<map[i][j]);
-                    colVis[j] = (1<<map[i][j]);
-                    boxVis[(i / 3) * 3 + j/3] = (1<<map[i][j]);
-                     */
                 }
             }
         }
         dfs(0);
     }
 
-    private static void Print() {
+    private static void print() {
         for(int i=0; i<9; i++){
             for(int j=0; j<9; j++){
                 System.out.print(map[i][j]);
@@ -49,7 +44,7 @@ public class 스도쿠 {
 
         if(flag) return;
         if(numIdx == 81){
-            Print();
+            print();
             flag = true;
             return;
         }
