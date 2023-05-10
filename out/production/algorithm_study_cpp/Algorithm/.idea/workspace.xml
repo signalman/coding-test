@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4209023f-f4c3-4dc5-a249-487b1aab27cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day40/p2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/day40/p2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day41/P1.java" beforeDir="false" afterPath="$PROJECT_DIR$/day41/P1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,28 +37,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/apica/Documents/GitHub/algorithm_study_cpp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Algorithm" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Algorithm" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -76,6 +65,11 @@
       <workItem from="1665984401571" duration="35000" />
       <workItem from="1666329948449" duration="22000" />
       <workItem from="1680086945154" duration="101000" />
+      <workItem from="1682437528330" duration="267000" />
+      <workItem from="1682510729920" duration="852000" />
+      <workItem from="1682676623598" duration="37000" />
+      <workItem from="1683628642388" duration="3404000" />
+      <workItem from="1683637523480" duration="219000" />
     </task>
     <servers />
   </component>
