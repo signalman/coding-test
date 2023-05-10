@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4209023f-f4c3-4dc5-a249-487b1aab27cd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/Test01.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day5/스도쿠.java" beforeDir="false" afterPath="$PROJECT_DIR$/day5/스도쿠.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day41/P1.java" beforeDir="false" afterPath="$PROJECT_DIR$/day41/P1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +36,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/apica/Documents/GitHub/algorithm_study_cpp/Algorithm",
+    "last_opened_file_path": "C:/Users/apica/Documents/GitHub/algorithm_study_cpp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -69,7 +68,8 @@
       <workItem from="1682437528330" duration="267000" />
       <workItem from="1682510729920" duration="852000" />
       <workItem from="1682676623598" duration="37000" />
-      <workItem from="1683628642388" duration="2652000" />
+      <workItem from="1683628642388" duration="3404000" />
+      <workItem from="1683637523480" duration="219000" />
     </task>
     <servers />
   </component>

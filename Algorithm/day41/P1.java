@@ -1,46 +1,19 @@
-package day41;
+package Algorithm.day41;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class P1 {
 
-    static int N;
-    static List<int[]> balls;
-    static class Ball{
-        int idx;
-        int color;
-        int size;
-
-        Ball(int idx, int color, int size) {
-            this.idx = idx;
-            this.color = color;
-            this.size = size;
-        }
+    public static void main(String[] args) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        map.put(2, new ArrayList<>());
+        map.get(2).add(3);
+        map.get(2).add(3);
+        map.get(2).add(3);
+        System.out.println(map.get(2));
     }
-    static Map<Integer, List<Ball>> map;
 
-    /*
-    * 1. (플레이어, 색, 크기)
-    * 2. Map에 색깔별 크기순 정렬
-    * 3.
-    * */
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        balls = new ArrayList<>();
-        map = new TreeMap<>();
-        for(int i=0; i<N; i++){
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int c = Integer.parseInt(st.nextToken());
-            int s = Integer.parseInt(st.nextToken());
-            balls.add(new int[]{c, s});
-            Ball ball = new Ball(i, c, s);
-        }
-
-
-
-    }
 }
