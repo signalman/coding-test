@@ -2,20 +2,16 @@
 using namespace std;
 
 int n;
-bool isPrime[10010];
+bool prime[10010];
 bool vis[10010];
 
 void beforeRun()
 {
-    fill(isPrime, isPrime + 10010, true);
-    for (int i = 1; i <= 100; i++)
+    for (int i = 2; i * i < 10000; i++)
     {
-        if (isPrime[i] == true)
+        for (int j = i * i; j < 10000; j += i)
         {
-            for (int j = 2; j <= 100; j++)
-            {
-                isPrime[j] = false;
-            }
+            prime[j] = false;
         }
     }
 }
@@ -24,39 +20,46 @@ int main()
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    memset(prime, true, sizeof(prime));
     beforeRun();
     cin >> n;
     for (int tc = 0; tc < n; tc++)
     {
-        string a, b, ans = "Impossible";
+        int a, b;
+        string ans = "Impossible";
         cin >> a >> b;
 
-        queue<pair<string, int>> q;
+        queue<pair<int, int>> q;
+        while (!q.empty())
+        {
+            q.pop();
+        }
         fill(vis, vis + 10000, false);
-        vis[stoi(a)] = 1;
+        vis[a] = 1;
         q.push({a, 0});
 
         while (!q.empty())
         {
             auto cur = q.front();
+            // cout << cur.first << '\n';
             q.pop();
             if (cur.first == b)
             {
-                ans = cur.second;
+                ans = to_string(cur.second);
                 break;
             }
             for (int i = 0; i < 4; i++)
             {
+                string nxt_a_str = to_string(cur.first);
                 for (int j = 0; j < 10; j++)
                 {
-                    if (i == 3 && j == 0)
-                        continue;
-                    string na = a;
-                    na[i] = j;
-                    if (!vis[stoi(na)] && isPrime[stoi(na)])
+                    nxt_a_str[i] = j + '0';
+                    int next = stoi(nxt_a_str);
+                    // cout << next << '\n';
+                    if (next >= 1000 && prime[next] && !vis[next])
                     {
-                        q.push({na, cur.second + 1});
-                        vis[stoi(na)] = true;
+                        q.push({next, cur.second + 1});
+                        vis[next] = true;
                     }
                 }
             }
