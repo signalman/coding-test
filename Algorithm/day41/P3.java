@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class P3 {
+
     static int N, M;
     static List<Integer> books;
     public static void main(String[] args) throws IOException {
