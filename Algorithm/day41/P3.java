@@ -19,6 +19,7 @@ public class P3 {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
+
         books = new ArrayList<>();
         st = new StringTokenizer(br.readLine());
         for(int i=0; i<N; i++){
