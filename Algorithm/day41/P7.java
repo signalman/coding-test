@@ -23,16 +23,11 @@ public class P7 {
             kids.add(Integer.valueOf(st.nextToken()));
         }
 
-//        System.out.println(kids.toString());
         List<int[]> diff = new ArrayList<>();
         for(int i=1; i<N; i++){
             diff.add(new int[]{kids.get(i) - kids.get(i - 1), diff.size()});
         }
         Collections.sort(diff, (o1, o2) -> Integer.compare(o2[0], o1[0]));
-
-//        for (int[] ints : diff) {
-//            System.out.print(ints[0] + " " + ints[1] + "    ");
-//        }
 
         //분기점
         boolean[] flag = new boolean[N];
@@ -42,15 +37,6 @@ public class P7 {
             flag[ints[1]+1] = true;
             count++;
         }
-
-//        for (boolean b : flag) {
-//            System.out.println(b);
-//        }
-//        8 3
-//        1 2 4 7 9 18 19 20
-
-//9 3
-//1 2 4 5 10 17 26 28 39
 
         int ans = 0;
         int mx, mn = kids.get(0);
@@ -65,6 +51,7 @@ public class P7 {
                 ans += (mx - mn);
             }
         }
+
 
         System.out.println(ans);
     }
