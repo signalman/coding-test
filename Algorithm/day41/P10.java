@@ -3,8 +3,6 @@ package Algorithm.day41;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class P10 {
@@ -26,45 +24,28 @@ public class P10 {
             }
         }
         dp = new int[N][N][3];
-
-        if (map[0][0] == 0) {
-            dp[0][0][0] = 1;
-            solve(0, 0, 0);
-        } else {
-            solve(0, 0, 2);
-        }
-
-        int ans = 0;
-        for(int i =0; i< 3; i++){
-            ans = Integer.max(ans, dp[N - 1][N - 1][i]);
-        }
-        System.out.println(ans);
+        int ret = map[0][0] == 0 ? solve(0, 0, 0) : solve(0, 0, 2) - 1;
+        System.out.println(ret);
     }
 
-    private static void solve(int i, int j, int milk) {
-        Queue<int[]> queue = new ArrayDeque<>();
-        queue.add(new int[]{i, j, milk});
+    static int solve(int x, int y, int milk) {
+        if(dp[x][y][milk] != 0) return dp[x][y][milk];
+        dp[x][y][milk] = 1;
+        for(int dir = 0; dir < 2; dir++){
+            int nx = x + dx[dir];
+            int ny = y + dy[dir];
+            int nMilk = (milk + 1) % 3;
 
-        while (!queue.isEmpty()) {
-            int[] cur = queue.poll(); //cur[0], cur[1]: 좌표, cur[2]: 마지막으로 먹은 우유
-
-            for(int dir = 0; dir < 2; dir++){
-                int nx = cur[0] + dx[dir];
-                int ny = cur[1] + dy[dir];
-                int nMilk = (cur[2] + 1) % 3;
-
-                if(nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
-                //원하는 우유일때
-                if (map[nx][ny] == nMilk) {
-                    dp[nx][ny][nMilk] = Integer.max(dp[nx][ny][nMilk], dp[cur[0]][cur[1]][cur[2]] + 1);
-                    queue.add(new int[]{nx, ny, nMilk});
-                }
-                //원하지 않은 우유일때
-                else{
-                    dp[nx][ny][cur[2]] = Integer.max(dp[nx][ny][cur[2]], dp[cur[0]][cur[1]][cur[2]]);
-                    queue.add(new int[]{nx, ny, cur[2]});
-                }
+            if(nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
+            //원하는 우유일때
+            if(map[nx][ny] == nMilk){
+                dp[x][y][milk] = Integer.max(dp[x][y][milk], solve(nx, ny, nMilk) + 1);
+            }
+            //우유 먹지 않고 지나칠때
+            else{
+                dp[x][y][milk] = Integer.max(dp[x][y][milk], solve(nx, ny, milk));
             }
         }
+        return dp[x][y][milk];
     }
 }
