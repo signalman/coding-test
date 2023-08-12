@@ -7,8 +7,8 @@ class Parent {
         this(500);
     }
 
-    Parent(int x) {
-        this.x = x;
+    Parent(int val) {
+        this.x = val;
     }
 
     int getX() {
