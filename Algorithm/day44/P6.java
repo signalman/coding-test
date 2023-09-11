@@ -1,6 +1,7 @@
 package Algorithm.day44;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
@@ -87,11 +88,12 @@ public class P6 {
 
                 if (logs[nxtNode].isVisit) {
 
-                    if(logs[nxtNode].curMoney >= curMoney + getMoney[nxtNode] - transportCost) continue;
-                    if (logs[END].isVisit && logs[nxtNode].beforeNode == curNode) {
+                    if (logs[nxtNode].beforeNode == curNode) {
+                        if(!logs[END].isVisit) continue;
                         System.out.println("Gee");
                         return;
                     }
+                    if(logs[nxtNode].curMoney >= curMoney + getMoney[nxtNode] - transportCost) continue;
                 }
                 logs[nxtNode].beforeNode = curNode;
                 logs[nxtNode].isVisit = true;
@@ -99,6 +101,10 @@ public class P6 {
                 queue.add(new int[]{nxtNode, logs[nxtNode].curMoney});
             }
         }
+        List<Integer> list = new ArrayList<>();
+        int[] a = new int[20];
+        list.toArray(list.toArray(new Integer[0]));
+
         System.out.println(logs[END].isVisit ? logs[END].curMoney : "gg");
 
     }
