@@ -1,4 +1,4 @@
-package Algorithm.day42;
+package day42;//package Algorithm.day42;
 
 import java.io.BufferedReader;
 import java.io.IOException;
