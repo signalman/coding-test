@@ -33,6 +33,7 @@ public class P6 {
                 for(String name: friends){
                     if(!indexMap.containsKey(name)) {
                         indexMap.put(name, index);
+                        indexMap.put(name, index);
                         index++;
                     }
                 }
@@ -57,12 +58,11 @@ public class P6 {
             p[rootB] = rootA;
             return -p[rootA];
         }
-        if(p[rootA] > p[rootB]){
+        else{
             p[rootB] += p[rootA];
             p[rootA] = rootB;
             return -p[rootB];
         }
-        return -777;
     }
     private static int find(int node){
         if(p[node] < 0) return node;
