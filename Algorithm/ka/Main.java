@@ -3,6 +3,8 @@ package Algorithm.ka;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -16,15 +18,17 @@ public class Main {
             nums[i] = Integer.parseInt(st.nextToken());
         }
 
-        int ans = solve(nums);
-        System.out.println(ans);
+        solve(nums);
     }
-    private static int solve(int[] nums){
+    private static void solve(int[] nums){
         int ret = 0;
         int[] dp = new int[nums.length];
         for (int i = 0; i < nums.length; i++)
             dp[i] = Integer.MAX_VALUE;
         dp[0] = nums[0];
+
+        int[] tracking = new int[nums.length];
+        tracking[0] = 0;
         for (int i = 0; i < nums.length; i++) {
 
             int st = 0;
@@ -41,11 +45,42 @@ public class Main {
                     st = mid + 1;
                 }
             }
-            if(dp[st] > nums[i]) {
+            if(dp[st] >= nums[i]) {
                 dp[st] = nums[i];
+                tracking[i] = st;
                 ret = Math.max(ret, st);
             }
         }
-        return ret + 1;
+//        Stack<Integer> stack = new Stack<>();
+//        int findIndex = ret;
+//        for(int i=nums.length - 1; i>=0; i--){
+//            if(tracking[i] == findIndex){
+//                stack.add(nums[i]);
+//                findIndex--;
+//            }
+//        }
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(ret + 1).append("\n");
+//        while (!stack.isEmpty()) {
+//            int cur = stack.pop();
+//            sb.append(cur).append(" ");
+//        }
+//        System.out.print(sb);
+
+        List<Integer> ans = new ArrayList<>();
+        int findIndex = ret;
+        for(int i=nums.length - 1; i>=0; i--){
+            if(tracking[i] == findIndex){
+                ans.add(nums[i]);
+                findIndex--;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(ret + 1).append("\n");
+        for(int i=ans.size()-1; i>=0; i--){
+            sb.append(ans.get(i)).append(" ");
+        }
+        System.out.print(sb);
+
     }
 }
