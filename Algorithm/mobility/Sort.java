@@ -14,7 +14,6 @@ public class Sort {
         solve(str1, str2);
 
     }
-
     private static void solve(String str1, String str2) {
 
         int[][] dp = new int[1001][1001];
