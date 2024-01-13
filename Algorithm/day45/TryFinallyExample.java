@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
+import javax.management.monitor.Monitor;
 
 public class TryFinallyExample {
 
@@ -13,6 +16,21 @@ public class TryFinallyExample {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        Semaphore semaphore = new Semaphore(2);
+        Object object = new Object();
+        ReentrantLock reentrantLock = new ReentrantLock();
+        Monitor monitor = new Monitor() {
+            @Override
+            public void start() {
+
+            }
+
+            @Override
+            public void stop() {
+
+            }
+        };
 
 //        String str = "자바가 좋아";
 //        byte[] bytes = str.getBytes();
