@@ -1,6 +1,7 @@
 package Algorithm.day45;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class WebSite implements Runnable {
 
