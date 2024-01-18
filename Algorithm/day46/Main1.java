@@ -13,8 +13,6 @@ public class Main1 {
         //우선순위 높은 순
         //호출시각 순
         Arrays.sort(program, Comparator.comparingInt(o1 -> o1[0]));
-        Arrays.sort(program, Comparator.comparingInt(o1 -> o1[1]));
-
 
         Arrays.sort(program, new Comparator<int[]>() {
             @Override
@@ -27,7 +25,7 @@ public class Main1 {
         });
 
         //우선순위 높은 순
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt((int[] o) -> o[0]).thenComparingInt(o->o[1]));
 
         long curTime = 0;
         int idx = 0;
