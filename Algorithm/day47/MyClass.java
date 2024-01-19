@@ -1,9 +1,12 @@
 package Algorithm.day47;
 
+import java.util.HashMap;
+
 public class MyClass {
 
     private final String name;
     private final int age;
+    private HashMap<Integer, Integer> map;
 
     public MyClass(){
         name = "";
