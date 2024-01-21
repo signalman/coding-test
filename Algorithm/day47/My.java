@@ -94,7 +94,6 @@ public class My{
             }
             press++;
         }
-
         return ret;
     }
 
