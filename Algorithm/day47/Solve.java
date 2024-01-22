@@ -1,11 +1,11 @@
 package Algorithm.day47;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class Solve {
-
 
     /*
     shop : 4, 물건: 5
@@ -19,7 +19,6 @@ public class Solve {
     * 1 0 0 1 0
     *
     * */
-
     static int s = Integer.MAX_VALUE;
     static int[] ans;
 
@@ -74,9 +73,7 @@ public class Solve {
             cart[i] -= 1;
         }
         select.remove(select.size() - 1);
-
     }
-
 
 
     public static void main(String[] args) {
@@ -89,9 +86,45 @@ public class Solve {
             {1, 1, 0, 1, 0},
             {1, 0, 0, 1, 1},
         });
-//        for (int i : solution) {
-//            System.out.print(i + " ");
-//        }
+
+        List<String> list = new ArrayList<>();
+        list.add("ekfekf");
+        Collections.sort(list);
+        list.sort(null);
+
+
+
+        String str1 = "Abcde";
+        String str2 = "abcde";
+        System.out.println(str2.compareTo(str1));
+        System.out.println();
+
+        Integer a = 2;
+        Integer b = 3;
+        System.out.println(b.compareTo(a));
+
+
+
+        List<List<Integer>> list1 = new ArrayList<>();
+        list1.add(Arrays.asList(2, 3, 4));
+        list1.add(Arrays.asList(1, 2, 3));
+        list1.sort((l1, l2) -> {
+            if (l1.size() == l2.size()) {
+                return l1.toString()
+                         .compareTo(l2.toString());
+            } else {
+                return Integer.compare(l1.size(), l2.size());
+            }
+        });
+
+        for (List<Integer> integers : list1) {
+            for (Integer integer : integers) {
+                System.out.print("integer = " + integer);
+            }
+            System.out.println();
+        }
+
+
 
     }
 }
