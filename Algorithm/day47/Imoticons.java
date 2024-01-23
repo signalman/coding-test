@@ -1,6 +1,9 @@
 package Algorithm.day47;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 public class Imoticons {
 
@@ -12,6 +15,14 @@ public class Imoticons {
         System.out.println(s);
         System.out.println(s1);
         HashMap<String, Integer> map = new HashMap<>();
+        List<Integer> list = new ArrayList<>();
+        list.add(list.isEmpty() ? 1 : -1);
+        Collections.reverse(list);
+        list.stream()
+            .mapToInt(i->i)
+            .toArray();
+
+
 
     }
 
