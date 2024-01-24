@@ -1,29 +1,36 @@
 package Algorithm.day47;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class Imoticons {
 
+    static class Node{
+        int x = 1; int y = 1;
+        int score;
+        Node(){
+            this.score = 5;
+        }
+        Node(int x, int y) {
+            this();
+            this.x = x;
+            this.y = y;
+        }
+    }
     public static void main(String[] args) {
-        int num1 = 29;
-        int num2 = 514;
-        String s = Integer.toBinaryString(29);
-        String s1 = Integer.toString(29, 2);
-        System.out.println(s);
-        System.out.println(s1);
-        HashMap<String, Integer> map = new HashMap<>();
-        List<Integer> list = new ArrayList<>();
-        list.add(list.isEmpty() ? 1 : -1);
-        Collections.reverse(list);
-        list.stream()
-            .mapToInt(i->i)
-            .toArray();
+        Node[] nodes = new Node[10];
+        for(int i=0; i<10; i++){
+            nodes[i] = new Node(i, i + 2);
+        }
 
-
-
+        PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(node -> node.score));
+        for(int i=0; i<10; i++){
+            pq.add(nodes[i]);
+        }
+        nodes[4].score = -1;
+        while (!pq.isEmpty()) {
+            System.out.println(pq.poll().score);
+        }
     }
 
 }
