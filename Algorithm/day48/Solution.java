@@ -1,6 +1,8 @@
 package Algorithm.day48;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,4 +43,24 @@ class Solution {
         }
         return set.size() / 2;
     }
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{1, 2, 3};
+        int[] arr1 = new int[]{1, 2, 3};
+        int asInt = Arrays.stream(arr)
+                          .max()
+                          .getAsInt();
+        Collections.frequency(Arrays.asList(arr), 3);
+        long count = Arrays.stream(arr1)
+                           .filter(i -> i == 3)
+                           .count();
+        int[] array = new int[]{1, 2, 3, 3};
+        List<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(2);
+        list.add(2);
+        int i = list.indexOf(2);
+        System.out.println(i);
+    }
 }
+
