@@ -1,8 +1,8 @@
 package Algorithm.day48;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Practice {
 /* int[] 를
@@ -29,35 +29,45 @@ public class Practice {
     public static void main(String[] args) {
 
         //replaceAll
-        String ex1 = "good, good, good person";
-        ex1 = ex1.replace("good", "fine");
-        System.out.println(ex1);
+//        String ex1 = "good, good, good person";
+//        ex1 = ex1.replace("good", "fine");
+//        System.out.println(ex1);
+//
+//        ex1 = ex1.replaceAll("good", "fine");
+//        System.out.println(ex1);
+//
+//
+//        StringBuilder sb1 = new StringBuilder("가");
+//        StringBuilder sb2 = new StringBuilder("1999나");
+//        int a = 3, b = 5;
+//        if (sb1.compareTo(sb2) < 0) {
+//            System.out.println("첫번째가 더 빨라요");
+//        }
+//
+//        String ex2 = "hello";
+//        ex2 = String.format("%10s", ex2).replace(' ', '-');
+//        System.out.println(ex2);
+//
+//        int[] array = new int[]{1, 3, 2, 1};
+//        List<Integer> list = Arrays.stream(array)
+//                                   .boxed()
+//                                   .collect(Collectors.toList());
+//
+//        StringBuilder sb = new StringBuilder("hello");
+//        StringBuilder replace = sb.replace(1, 2, "");
+//        String ss = "f  ekfje  kelfjel";
+//        String replace1 = ss.replace(" ", "");
+//        System.out.println(replace1);
+//        int[] array11 = new int[]{1, 2, 3};
+//        Queue<Integer> queue = new ArrayDeque<>();
+        String str = "";
 
-        ex1 = ex1.replaceAll("good", "fine");
-        System.out.println(ex1);
-
-
-        StringBuilder sb1 = new StringBuilder("가");
-        StringBuilder sb2 = new StringBuilder("1999나");
-        int a = 3, b = 5;
-        if (sb1.compareTo(sb2) < 0) {
-            System.out.println("첫번째가 더 빨라요");
-        }
-
-        String ex2 = "hello";
-        ex2 = String.format("%10s", ex2).replace(' ', '-');
-        System.out.println(ex2);
-
-        int[] array = new int[]{1, 3, 2, 1};
-        List<Integer> list = Arrays.stream(array)
-                                   .boxed()
-                                   .collect(Collectors.toList());
-
-        StringBuilder sb = new StringBuilder("hello");
-        StringBuilder replace = sb.replace(1, 2, "");
-        String ss = "f  ekfje  kelfjel";
-        String replace1 = ss.replace(" ", "");
-        System.out.println(replace1);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("heello");
+        stringBuilder.setCharAt(0, '2');
+        System.out.println(stringBuilder);
+        Integer a = 3;
+        List<Integer> list = new ArrayList<>(Arrays.asList(2, 3, 4));
 
     }
 }
