@@ -62,12 +62,13 @@ public class Practice {
 //        Queue<Integer> queue = new ArrayDeque<>();
         String str = "";
 
+        int[][] array = new int[5][2];
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("heello");
         stringBuilder.setCharAt(0, '2');
         System.out.println(stringBuilder);
         Integer a = 3;
         List<Integer> list = new ArrayList<>(Arrays.asList(2, 3, 4));
-
+        List<String> stringList = new ArrayList<>();
     }
 }
