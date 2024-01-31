@@ -15,6 +15,7 @@ public class Main {
             animal.getSounds();
         }
         Set<String> set = new HashSet<>();
+        String[] st = new String[3];
         List<String> list = new ArrayList<>();
         List<String> list1 = Arrays.asList("h", "i", "b");
         List<String> list2 = Arrays.asList("h", "b", "i");
