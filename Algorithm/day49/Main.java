@@ -10,6 +10,7 @@ import java.util.Queue;
 public class Main {
 
     public static void main(String[] args) {
+        String str= "";
 
         String[][] arrays = new String[][]{{"first", "second"}, {"third", "forth"}, {"fifth", "sixth"}};
 
