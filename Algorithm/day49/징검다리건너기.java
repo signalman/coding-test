@@ -23,7 +23,7 @@ public class 징검다리건너기 {
             return;
         }
 
-        int mid = (left + right )/ 2;
+        int mid = (left + right)/ 2;
         init(node * 2, left, mid);
         init(node * 2 + 1, mid + 1, right);
         maxTree[node] = Math.max(maxTree[node * 2], maxTree[node*2 + 1]);
