@@ -32,9 +32,6 @@ public class Test {
         if(tmp.size() == n && tmpSum == sum){
 
 //            //모든 부분집합 동일 판단.
-//            if(makeSumOfSubset(tmp).equals()){
-//                answer = tmp;
-//            }
             return;
 
         }
