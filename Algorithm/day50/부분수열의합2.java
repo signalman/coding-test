@@ -54,5 +54,6 @@ public class 부분수열의합2 {
         }
         dfs(depth + 1, numbers, n, sum + numbers[depth], type);
         dfs(depth + 1, numbers, n, sum, type);
+
     }
 }
