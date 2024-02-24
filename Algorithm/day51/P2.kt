@@ -14,8 +14,6 @@ class P2 {
 
 }
 
-
-
 fun main() {
     var n = 3
     val sqrt = sqrt(n.toDouble())
