@@ -1,19 +1,19 @@
 package Algorithm.day53;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class 주사위굴리기_수정ver {
 
-    int tc = -1;
+    int total = -1;
     int[] answer;
     int[][] dice;
 
     public int[] solution(int[][] dice) {
         boolean[] isSelected = new boolean[dice.length];
         this.dice = dice;
+        answer = new int[dice.length / 2];
         combination(0, 0, isSelected);
         return answer;
     }
@@ -25,37 +25,32 @@ public class 주사위굴리기_수정ver {
                 List<Integer> sumsB = getAllSums(dice, isSelected, false);
 
                 Collections.sort(sumsB);
+                int cnt = 0;
+
                 for(int i=0; i<sumsA.size(); i++){
-                    
+
                     //이분탐색
                     int st = 0;
                     int en = sumsB.size() - 1;
                     while(st < en){
-                        int mid = (st + en) / 2;
+                        int mid = (st + en + 1) / 2;
 
                         if(sumsB.get(mid) < sumsA.get(i)){
                             st = mid;
                         }
                         else en = mid - 1;
                     }
-
-                    if(tc < st + 1){
-                        tc = st + 1;
-                        int[] arr = new int[10];
-                        int count1 = 0;
-                        for (int index = 0; index < isSelected.length; index++) {
-                            if (isSelected[index]) {
-                                int i1 = index + 1;
-                                if (arr.length == count1)
-                                    arr = Arrays.copyOf(arr, count1 * 2);
-                                arr[count1++] = i1;
-                            }
-                        }
-                        arr = Arrays.copyOfRange(arr, 0, count1);
-                        answer = arr;
+                    cnt += st + 1;
+                }
+                if(total < cnt){
+                    total = cnt;
+                    // answer = IntStream.range(0, isSelected.length).filter(index -> isSelected[index]).map(index -> index + 1).toArray();
+                    int index = 0;
+                    for(int j=0; j<isSelected.length; j++){
+                        if(isSelected[j])
+                            answer[index++] = j+1;
                     }
                 }
-
             }
             return;
         }
@@ -70,13 +65,12 @@ public class 주사위굴리기_수정ver {
 
         List<Integer> ret = new ArrayList<>();
         int N = isSelected.length / 2;
-        List<List<Integer>> allCases = new ArrayList<>(); //ex: [[00011], [00012], ... [66666]]
+        List<List<Integer>> allCases = new ArrayList<>(); //ex: [[00011], [00012], ... [55555]]
         List<Integer> tmpArray = new ArrayList<>();
         bruteForce(0, N, tmpArray, allCases);
-        int sum = 0;
-
         for (List<Integer> allCase : allCases) {
             int index = 0;
+            int sum = 0;
             for(int i=0; i<isSelected.length; i++){
                 if(isSelected[i] == type){
                     sum += dice[i][allCase.get(index++)];
@@ -88,7 +82,9 @@ public class 주사위굴리기_수정ver {
     }
     void bruteForce(int cur, int N, List<Integer> tmpArray, List<List<Integer>> allCases){
         if(cur == N){
-            allCases.add(tmpArray);
+            if(tmpArray.size() == N){
+                allCases.add(new ArrayList<>(tmpArray));
+            }
             return;
         }
         for(int i=0; i<6; i++){
@@ -96,15 +92,5 @@ public class 주사위굴리기_수정ver {
             bruteForce(cur + 1, N, tmpArray, allCases);
             tmpArray.remove(tmpArray.size() - 1);
         }
-    }
-
-    public static void main(String[] args) {
-        List<List<Integer>> an = new ArrayList<>();
-        s(an);
-        System.out.println(an.size());
-    }
-    public static void s(List<List<Integer>> l){
-        l.add(List.of(1, 2));
-        l.add(List.of(2, 3));
     }
 }
