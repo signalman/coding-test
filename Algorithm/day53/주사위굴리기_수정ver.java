@@ -21,8 +21,8 @@ public class 주사위굴리기_수정ver {
         if(cur == isSelected.length){
             if(count == isSelected.length / 2){
                 //처리로직
-                List<Integer> sumsA = getAllSums(dice, isSelected, true);
-                List<Integer> sumsB = getAllSums(dice, isSelected, false);
+                List<Integer> sumsA = getAllSums(isSelected, true);
+                List<Integer> sumsB = getAllSums(isSelected, false);
 
                 Collections.sort(sumsB);
                 int cnt = 0;
@@ -61,36 +61,30 @@ public class 주사위굴리기_수정ver {
         combination(cur + 1, count, isSelected);
     }
 
-    List<Integer> getAllSums(int[][] dice, boolean[] isSelected, boolean type){
-
+    List<Integer> getAllSums(boolean[] isSelected, boolean type) {
         List<Integer> ret = new ArrayList<>();
         int N = isSelected.length / 2;
-        List<List<Integer>> allCases = new ArrayList<>(); //ex: [[00011], [00012], ... [55555]]
-        List<Integer> tmpArray = new ArrayList<>();
-        bruteForce(0, N, tmpArray, allCases);
-        for (List<Integer> allCase : allCases) {
-            int index = 0;
-            int sum = 0;
-            for(int i=0; i<isSelected.length; i++){
-                if(isSelected[i] == type){
-                    sum += dice[i][allCase.get(index++)];
+        List<Integer> combination = new ArrayList<>();
+        generateCombinations(0, N, combination, ret, isSelected, type);
+        return ret;
+    }
+
+    void generateCombinations(int cur, int N, List<Integer> combination, List<Integer> ret, boolean[] isSelected, boolean type) {
+        if (cur == N) {
+            int sum = 0, index = 0;
+            for (int i = 0; i < isSelected.length; i++) {
+                if (isSelected[i] == type) {
+                    sum += dice[i][combination.get(index++)];
                 }
             }
             ret.add(sum);
-        }
-        return ret;
-    }
-    void bruteForce(int cur, int N, List<Integer> tmpArray, List<List<Integer>> allCases){
-        if(cur == N){
-            if(tmpArray.size() == N){
-                allCases.add(new ArrayList<>(tmpArray));
-            }
             return;
         }
-        for(int i=0; i<6; i++){
-            tmpArray.add(i);
-            bruteForce(cur + 1, N, tmpArray, allCases);
-            tmpArray.remove(tmpArray.size() - 1);
+
+        for (int i = 0; i < 6; i++) {
+            combination.add(i);
+            generateCombinations(cur + 1, N, combination, ret, isSelected, type);
+            combination.remove(combination.size() - 1);
         }
     }
 }
