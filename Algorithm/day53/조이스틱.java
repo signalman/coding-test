@@ -25,8 +25,9 @@ public class 조이스틱 {
             if(pressBtn[i] == 0) continue;
             //변경
             int tmp = pressBtn[i];
+            int diff = Math.abs(index - i);
+            int minDist = Math.min(diff, pressBtn.length - diff);
             pressBtn[i] = 0;
-            int minDist = Math.min(Math.abs(index - i), Math.abs(pressBtn.length - Math.abs(index - i)));
             solve(i, pressBtn, toBeUpdated - 1, count + tmp + minDist);
             pressBtn[i] = tmp;
         }
