@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class 베스트앨범 {
     public int[] solution(String[] genres, int[] plays) {
@@ -41,5 +40,15 @@ public class 베스트앨범 {
             answer.addAll(keys);
         }
         return answer.stream().mapToInt(i->i).toArray();
+    }
+
+    public static void main(String[] args) {
+        Map<String, Integer> map1 = new HashMap<>();
+        //값이 없으면 추가, 있다면 더하기
+        map1.merge("Kevin", 1, Integer::sum);
+
+        //value가 초기화가 필요할때 사용
+        Map<String, Map<Integer, Integer>> map2 = new HashMap<>();
+        map2.computeIfAbsent("Kevin", k -> new HashMap<>()).put(1, 1);
     }
 }
