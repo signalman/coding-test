@@ -46,8 +46,8 @@ public class Main1 {
             }
             return Arrays.stream(dp[onboard.length-1]).min().getAsInt();
         }
-    }
 
+    }
     public static void main(String[] args) {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(1, 175);
@@ -66,4 +66,5 @@ public class Main1 {
 
 
     }
+
 }
