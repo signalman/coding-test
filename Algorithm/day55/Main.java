@@ -21,6 +21,6 @@ public class Main {
 
     public static void main(String[] args) {
         int[][] array = new int[3][2];
-        Arrays.sort(array, Comparator.comparing((int[] a) -> a[0]).thenComparing(a -> a[1]));
+        Arrays.sort(array, Comparator.comparingInt((int[] a) -> a[0]).thenComparing(a -> a[1]));
     }
 }
