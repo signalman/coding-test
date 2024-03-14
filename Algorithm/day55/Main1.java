@@ -12,12 +12,11 @@ public class Main1 {
     public int solution(int[][] game_board, int[][] table) {
         int answer = 0;
 
-        //game_board에서 빈칸 모양들 저장
         List<int[][]> emptyShapes = new ArrayList<>();
         List<int[][]> blocks = new ArrayList<>();
 
-        addShape(game_board, emptyShapes);
-        addShape(table, blocks);
+        addShape(game_board, emptyShapes, 0);
+        addShape(table, blocks, 1);
 
         boolean[] isUsed = new boolean[blocks.size()];
 
@@ -35,7 +34,7 @@ public class Main1 {
             if(isUsed[i]) continue;
             int[][] block = blocks.get(i);
 
-            for(int r = 0; r <= 4; r++){
+            for(int r = 0; r < 4; r++){
                 block = rotate(block);
                 if(check(empty, block)) {
                     isUsed[i] = true;
@@ -46,12 +45,12 @@ public class Main1 {
         return false;
     }
 
-    private void addShape(int[][] board, List<int[][]> candidate) {
+    private void addShape(int[][] board, List<int[][]> candidate, int target) {
         boolean[][] visited = new boolean[board.length][board[0].length];
         for(int i=0; i<board.length; i++){
             for(int j=0; j<board[0].length; j++){
-                if(visited[i][j] || board[i][j] == 1) continue;
-                int[][] shape = bfs(i, j, visited, board, 0);
+                if(visited[i][j] || board[i][j] != target) continue;
+                int[][] shape = bfs(i, j, visited, board, target);
                 candidate.add(shape);
             }
         }
@@ -122,7 +121,6 @@ public class Main1 {
 
         for(int i=0; i<ret.length; i++){
             for(int j=0; j<ret[0].length; j++){
-                ret[i][j] = 1 - target;
                 ret[i][j] = board[i + minX][j + minY];
             }
         }
