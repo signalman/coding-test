@@ -53,9 +53,6 @@ public class Main3 {
                 answer.add(list.size() - st);
             }
         }
-        return answer.stream()
-                     .mapToInt(i -> i)
-                     .toArray();
+        return answer.stream().mapToInt(i -> i).toArray();
     }
-
 }
