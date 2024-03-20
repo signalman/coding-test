@@ -57,4 +57,5 @@ public class 교점에별만들기 {
         if((a * d - b * c) == 0) return null;
         return new double[]{(double)(b * f - e * d) / (a * d - b * c), (double)(e * c - a * f) / (a * d - b * c)};
     }
+
 }
