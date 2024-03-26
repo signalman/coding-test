@@ -7,11 +7,13 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Main12 {
-
+    private static class Node{
+        int x, y;
+    }
 
     public static void main(String[] args) {
         Dictionary<String, String> d = new Hashtable<>();
-        Map<String, String> map = new HashMap<>(123, 0.75f);
+        Map<Integer, String> map = new HashMap<>(123, 0.75f);
 
         int i = Integer.valueOf(3).hashCode();
         int i1 = Double.valueOf(2.2)
@@ -21,6 +23,23 @@ public class Main12 {
         int hash = Objects.hash(1, 2, 3);
         int h = Objects.hashCode(new int[]{1, 2, 3});
         System.out.println(hash + " " + h);
+
+        map.putAll(Map.of(6, "six", 12, "twelve", 1, "one", 2, "two"
+//            ,3, "three", 4, "four"
+        ));
+        Node n = new Node();
+        String name = n.getClass()
+                       .getName();
+        System.out.println(name);
+        String name1 = n.getClass()
+                       .getName();
+        System.out.println(name1);
+
+        for (Integer integer : map.keySet()) {
+            System.out.println(integer + " " + map.get(integer));
+        }
+        String str = "";
+        str.hashCode();
     }
 
 
