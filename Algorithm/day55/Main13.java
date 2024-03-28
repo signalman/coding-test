@@ -12,9 +12,8 @@ class Main13 {
 
         for(int i=0; i<numbers.length; i++){
             String binary = Long.toString(numbers[i], 2);
-            int target = findMinPower(binary.length());
-            String satBinary = "0".repeat(target - 1 - binary.length()) + binary;
-            answer[i] = solve(satBinary) ? 1 : 0;
+            String saturatedBinary = "0".repeat(findLength(binary.length()) - binary.length()) + binary;
+            answer[i] = solve(saturatedBinary) ? 1 : 0;
         }
         return answer;
     }
@@ -24,15 +23,15 @@ class Main13 {
         dfs(0, binary.length() - 1, child);
         Queue<Integer> queue = new ArrayDeque<>();
         queue.add((binary.length() - 1) / 2);
-        // System.out.println(Arrays.deepToString(child));
-
         while(!queue.isEmpty()){
 
             int parent = queue.poll();
+            //리프노드일때 continue
             if(Arrays.equals(child[parent], new int[]{0, 0})) continue;
 
-            int left = child[parent][0];
-            int right = child[parent][1];
+            int left = child[parent][0]; //왼쪽 자식
+            int right = child[parent][1]; //오른쪽 자식
+            
             if(binary.charAt(parent) == '0' && (binary.charAt(left) == '1' || binary.charAt(right) == '1')) return false;
             queue.add(left);
             queue.add(right);
@@ -53,11 +52,11 @@ class Main13 {
     }
 
 
-    int findMinPower(int len){
+    int findLength(int len){
         int x = 1;
         while(x <= len){
             x *= 2;
         }
-        return x;
+        return x - 1;
     }
 }
