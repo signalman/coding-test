@@ -17,8 +17,8 @@ class 대충만든자판 {
             .groupBy { it.value }
             .mapValues { (_, indexes) -> indexes.minOf { it.index + 1 } }
 
-        return targets.map { target ->
-            target.sumOf { c -> map[c] ?: return@map -1 }.takeIf { target.all { c -> c in map } } ?: -1
+        return targets.map {
+                target -> target.sumOf { c -> map[c] ?: return@map -1 }
         }.toIntArray()
     }
 }
